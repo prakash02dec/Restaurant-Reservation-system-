@@ -3,8 +3,8 @@
 **OOPs Course Mini Project**
 ---
 ### Team Members
-|Name|Email|Institute ID| |    
-|----|-----|-------|     
+|Name|Email|Institute ID|    |    
+|----|-----|-------|-----|    
 | [Om Morendha](https://github.com/omkmorendha) | omkmorendha@gmail.com |20bcs095| Backend |
 | [Nikam Yash](https://github.com/Yashnikam-10) | 20bcs093@iiitdwd.ac.in |20bcs093| Frontend |
 | [Nimish Mangee](https://github.com/Nimishmangee) | 20bcs094@iiitdwd.ac.in |20bcs094| Frontend |
