@@ -1,0 +1,72 @@
+body,html{
+  min-height: 100%;
+}
+body{
+  background-color: #EAEAEA;
+}
+/* body{
+  background-image: url("photo2.jpeg");
+  background-repeat:no repeat;
+  background-size:cover;
+  opacity:0.9;
+
+} */
+.title{
+  color:#fff;
+  padding:10px 0;
+}
+.nav-link{
+  color:#fff;
+  font-size:1.2rem;
+}
+.navbar-nav{
+  padding:0 10px;
+}
+.nav-item{
+  padding:0 18px;
+}
+.login-box{
+  /* margin:11% 0 0 42%; */
+  padding:4% 0 7% 7%;
+  background-color: #fff;
+  margin:8.5% 30%;
+}
+.input-field{
+  padding:6.1px 10px;
+}
+.input-container{
+  margin-bottom: 5%;
+}
+.btn{
+  background-color: #B91646;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+  opacity: 0.9;
+}
+.btn:hover {
+  opacity: 1;
+}
+.icon {
+  padding:12px 0;
+  background: #B91646;
+  color: white;
+  min-width: 70px;
+  text-align: center;
+  opacity: 0.9;
+
+}
+.icon:hover{
+  opacity:1;
+}
+.details{
+  margin-bottom: 1%;
+}
+.circle-icon {
+  background: #EAEAEA;
+  padding: 30px;
+  color: #FEF5ED;
+  margin:0 0 6% 25%;
+  border-radius: 12%;
+}
