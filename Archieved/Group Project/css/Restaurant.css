@@ -33,7 +33,7 @@ body{
   padding-top: 6%;
 }
 #restaurant-cover-image{
-  background-image: url("photo4.jpg");
+  background-image: url("/images/photo4.jpg");
   height:400px;
   width:100%;
   background-repeat:no repeat;
