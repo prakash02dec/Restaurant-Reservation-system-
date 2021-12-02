@@ -1,5 +1,5 @@
 /*-----------------------
-        Common CSS 
+        Common CSS
 -------------------------*/
 
 * {
@@ -69,16 +69,23 @@ a {
 }
 
 /*-----------------------
-    Navbar 
+    Navbar
 -------------------------*/
 .btn{
   margin: 5px ;
 }
+
 .navbar-brand{
   font-family: "Poppins", sans-serif;
   font-size: 2.5rem;
   font-weight: bold;
+  margin-right: 50px;
 }
+
+.btn-signin{
+  margin-right: 15px;
+}
+
 .nav-link{
   font-size: 1.3rem;
   font-family: "Poppins", sans-serif;
@@ -91,7 +98,7 @@ a {
 }
 
 .restaurant_list_item {
-  margin:  auto 5px auto;
+  margin:  auto 10px auto;
 }
 
 ._toggler {
@@ -104,7 +111,7 @@ a {
   font-weight: 500;
   line-height: 16px;
   color: #4d4d4d !important;
-  padding: 8px 0 !important;
+  padding: 8px 0 0 0!important;
 }
 
 ._active {
@@ -126,11 +133,11 @@ a {
 
 .title-section {
   padding: 5px 0 0 ;
- 
+
 }
 
 .header-title{
-  background-image: url("/public/images/title-img.jpg");
+  background-image: url("../images/title-img1.jpeg");
   /* filter: blur(8px);
   -webkit-filter: blur(8px); */
   background-repeat: no-repeat;
@@ -471,26 +478,15 @@ a {
     Footer Grover Grocery Section
 --------------------------------*/
 
-.footer {
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  padding-left: 100px;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  line-height: 2;
+footer {
   background-color: #f55253 ;
   color: #f8f8f8;
+  font-family: "Poppins", sans-serif;
   text-align: center;
-  font-size: 12px;
 }
 
 a{
   color: #f8f8f8;
-}
-
-.social-icon{
-  font-size: 150%;
-  margin: 0 25px;
 }
 /*-------------------------------------
     Footer Grover Grocery Section Ends
