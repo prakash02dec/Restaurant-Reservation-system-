@@ -1,0 +1,109 @@
+body,html{
+  min-height: 100%;
+}
+body{
+  background-image: url("photo7.jpeg");
+  background-repeat:no repeat;
+  background-size:cover;
+  opacity:1;
+}
+
+/* --------
+For the signup and login button
+------- */
+.btn{
+  margin: 5px ;
+}
+
+
+
+/* ---------------
+Navbar Controls
+--------------- */
+.navbar-brand{
+  font-family: "Poppins", sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-right: 50px;
+}
+
+.btn-signin{
+  margin-right: 15px;
+}
+
+.nav-link{
+  font-size: 1.3rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: light;
+}
+
+
+
+
+.title-container{
+  backdrop-filter: blur(6px);
+  padding: 7rem ;
+}
+
+.catch-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-size: 60px;
+  line-height: 88px;
+  letter-spacing: -0.01em;
+  color: #F2F2F2;
+  text-align: center;
+}
+
+
+
+/* ----------------------
+For the input container
+----------------------- */
+.input-container{
+ padding:95px 230px 35px 230px ;
+ margin:auto;
+}
+.input-container {
+ display: -ms-flexbox; /* IE10 */
+ display: flex;
+ width: 100%;
+}
+.input-field {
+ width: 80%;
+ padding: 20px;
+ outline: none;
+ border:none;
+ border-radius: 3px;
+}
+.input-field:focus {
+ border: 2px solid dodgerblue;
+}
+
+
+
+
+.icon {
+ padding-top: 24px;
+ background: #f55253 !important;;
+ color: white;
+ width:80%;
+ text-align: center;
+ border-radius: 1px;
+}
+
+
+
+
+.submit-button {
+ background-color: #f55253 !important;;
+ color: white;
+ padding: 25px 0;
+ border: none;
+ border-radius: 10px;
+ width: 30%;
+ margin-left: 36%;
+}
+.submit-button:hover {
+ opacity: 0.9;
+}
