@@ -1,0 +1,198 @@
+body,html{
+  min-height: 100%;
+}
+body{
+  background-color: #EAEAEA;
+}
+.title{
+  color:#fff;
+  padding:7px 0;
+}
+.nav-link{
+  color:#fff;
+  font-size:1.2rem;
+}
+.nav-link:hover{
+  color:#EAEAEA;
+  opacity:0.8;
+}
+.navbar-nav{
+  padding:0 0px;
+}
+.nav-item{
+  padding:0 15px;
+}
+.icon {
+  padding-top: 14px;
+  min-width: 70px;
+  text-align: right;
+  margin:auto;
+  color:#fff;
+}
+.helpline{
+  padding-top: 6%;
+}
+#restaurant-cover-image{
+  background-image: url("https://github.com/prakash02dec/Restaurant-Reservation-system-/blob/frontend/Archieved/Group%20Project/images/photo4.jpg?raw=true");
+  height:400px;
+  width:100%;
+  background-repeat:no repeat;
+  background-size:cover;
+  background-position: center;
+  opacity:0.95;
+}
+
+/* Restaurant details section */
+#restaurant-details{
+  background-color: #F6F6F6;
+  width:55%;
+  height:1900px;
+  float:left;
+  margin:2% 2% 2% 10%;
+  border-radius: 1%;
+}
+
+
+/* For booking section */
+.book-a-table{
+  background-color: #D9CAB3;
+  width:25%;
+  height:380px;
+  float:left;
+  margin:2% 2% 10% 0;
+  border-radius: 2%  ;
+
+}
+
+/* Restaurant name heading */
+h1{
+  text-align: center;
+}
+hr{
+  color:#B91646;
+  background-color: #grey;
+  height:2px;
+  border-width: 2px;
+}
+.restaurant-features{
+padding:1% 10px;;
+}
+.icon-rating{
+  color:red;
+}
+
+
+/* For restaurant navbar controls */
+.item{
+  float:left;
+}
+.rest-navbar{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #B91646;
+}
+.item-about, .item-menu, .item-photos{
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.item-about:hover, .item-menu:hover, .item-photos:hover{
+  background-color: #111;
+  color:#EAEAEA;
+}
+
+
+
+/* Menu images */
+.menu-images{
+  width:47.5%;
+  height:500px;
+  margin-left:10px;
+}
+.carousel-inner{
+  width:100%;
+  height:550px;
+  background-repeat:no repeat;
+  background-size:cover;
+  background-position: center;
+}
+.d-block{
+  border:5px solid #B91646;
+}
+
+
+
+h3{
+  text-align: center;
+  padding-top:10px;
+}
+hr{
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+/* For controls of menu,image and about headings */
+.about-restaurant{
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+
+p{
+  line-height: 200%;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+/* Icons of booking section */
+.fa-users{
+  margin-right: 3px;
+  padding-left: 12px;
+}
+.fa-table{
+  margin:0 1% 5% 0;
+  padding-left: 4%;
+  padding-top: 1%;
+  padding-right: 5px;
+}
+.icon-clock{
+  margin:0 1% 5% 2%;
+  padding-right: 5px;
+  padding-left:8px;
+}
+.book-button{
+  margin-left:12px;
+  background-color:#B91646;
+}
+.book-button:hover{
+  background-color: green;
+}
+
+
+/* Booking section containers */
+#date-of-booking{
+  margin-bottom: 22px;
+  margin-right: 9px;
+  padding:1% 0;
+  width:75%;
+}
+.social-icon{
+  margin:20px 10px;
+}
+.guest-container,.date-container,.time-container{
+  margin-bottom: 3%;
+}
+
+
+
+#footer{
+  padding:7% 15%;
+  text-align:center;
+  float:left;
+  width: 100%;
+  background-color: #B91646;
+}
