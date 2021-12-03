@@ -1,0 +1,78 @@
+<%- include('partials/header.ejs') %>
+
+  <div class="signup-container container">
+    <div class="title">Registration</div>
+    <div class="content">
+      <form action="/signup" method="post">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Full Name</span>
+            <input name="name" type="text" placeholder="Enter your name" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Address</span>
+            <input name="address" type="text" placeholder="Enter your address" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input name="username" type="email" placeholder="Enter your email" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Phone Number</span>
+            <input name="number" type="text" placeholder="Enter your number" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Password</span>
+            <input name="password" type="password" placeholder="Enter your password" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Confirm Password</span>
+            <input name="confirmed_password" type="password" placeholder="Confirm your password" required>
+          </div>
+        </div>
+        <div class="gender-details">
+          <input type="radio" name="gender"  value="Male" id="dot-1">
+          <input type="radio" name="gender" value="Female" id="dot-2">
+          <input type="radio" name="gender" value="Prefer not to say" id="dot-3">
+          <span class="gender-title">Gender</span>
+          <div class="category">
+            <label for="dot-1">
+              <span class="dot one"></span>
+              <span class="gender">Male</span>
+            </label>
+            <label for="dot-2">
+              <span class="dot two"></span>
+              <span class="gender">Female</span>
+            </label>
+            <label for="dot-3">
+              <span class="dot three"></span>
+              <span class="gender">Prefer not to say</span>
+            </label>
+          </div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Register">
+        </div>
+      </form>
+    </div>
+
+
+    <div class="card-body">
+      <div class="card social-block">
+        <a class="btn btn-block btn-social btn-google" href="/auth/google" role="button">
+          <i class="fab fa-google"></i>
+          Sign Up with Google
+        </a>
+      </div>
+      <div class="card card-md social-block">
+        <a class="btn btn-block btn-social btn-facebook" href="/auth/facebook" role="button">
+          <i class="fab fa-facebook"></i>
+          Sign Up with Facebook
+        </a>
+      </div>
+    </div>
+
+
+
+  </div>
+  <%- include('partials/footer.ejs') %>
