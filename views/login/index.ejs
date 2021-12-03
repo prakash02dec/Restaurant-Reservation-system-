@@ -1,6 +1,8 @@
 <%- include('partials/header') %>
 
-	<div class="card">
+<%- include('../common/navbar') %>
+
+	<div class="card login-card">
 		<input type="checkbox" id="chk" aria-hidden="true" name="">
 		<div class="content">
 			<div class="front">
@@ -10,7 +12,7 @@
 					<input type="text" name="txt" placeholder="User name">
 					<input type="password" name="pswd" placeholder="Password">
 					<label for="chk" aria-hidden="true">Forget password?</label>
-					<button type="button">Login</button>
+					<button type="button" class="login-btn">Login</button>
 				</div>
 			</div>
 
@@ -20,7 +22,7 @@
 				  <p>In order to reset your password please keep your registered mobile number with you for OTP.</p>
 					<input type="text" name="txt" placeholder="User name">
 					<input type="email" name="email" placeholder="Email address">
-					<button type="button">Reset password</button>
+					<button type="button" class="login-btn">Reset password</button>
 					<label for="chk" aria-hidden="true">Back to log-in page</label>
 				</div>
 			</div>

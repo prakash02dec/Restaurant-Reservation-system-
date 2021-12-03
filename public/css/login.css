@@ -1,17 +1,18 @@
 *{
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
+	/* box-sizing: border-box; */
 	font-family: 'jost', sans-serif;
 }
 body{
 	background:#f2f2f2;
-	display: flex;
+	/* display: flex; */
 	align-items: center;
 	justify-content: center;
 	height: 100vh;
 }
-.card{
+.login-card{
+	margin: 100px auto;
 	width: 350px;
 	height: 430px;
 	perspective: 1500px;
@@ -104,6 +105,7 @@ input[type=email]::placeholder{
 	float: right;
 	cursor: pointer;
 }
+
 .back label{
 	position: absolute;
 	bottom: 40px;
@@ -113,7 +115,7 @@ input[type=email]::placeholder{
 	color: red;
 	cursor: pointer;
 }
-button{
+.login-btn{
 	position: absolute;
 	right: 30px;
 	width: 82%;
@@ -128,14 +130,14 @@ button{
 	cursor: pointer;
 	transition: .3s;
 }
-.front button{
+.front .login-btn{
 	bottom: 10%;
 }
 
-.back button{
+.back .login-btn{
 	bottom: 20%;
 }
 
-button:hover{
+.login-btn:hover{
 	background-color: #cf3c27;
 }

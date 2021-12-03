@@ -3,6 +3,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
+const cheerio = require('cheerio');
+
 // const session = require("express-session");
 // const passport = require("passport");
 // const passportLocalMongoose = require("passport-local-mongoose");
@@ -19,7 +21,7 @@ app.use(bodyParser.urlencoded({
 
 app.get("/", function(req, res){
   res.render("home/index");
-})
+});
 
 app.get("/signup", function(req, res){
   res.render("signup/index");
@@ -27,6 +29,7 @@ app.get("/signup", function(req, res){
 
 app.get("/login", function(req, res){
   res.render("login/index");
+
 })
 
 app.listen(3000, function(){

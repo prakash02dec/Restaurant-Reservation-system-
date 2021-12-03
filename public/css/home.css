@@ -80,6 +80,11 @@ a {
   font-size: 1.2rem;
 }
 
+.navbar{
+  margin-top: 0;
+  padding-top: 0;
+}
+
 #book-button {
   font-size: 1.5rem;
 }
@@ -107,7 +112,9 @@ a {
 
 .restaurant_navbar {
   background: none !important;
-  margin-top: 10px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .restaurant_list_item {
@@ -146,7 +153,8 @@ a {
 
 .title-section {
   padding: 5px 0 0 ;
-
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .header-title{
