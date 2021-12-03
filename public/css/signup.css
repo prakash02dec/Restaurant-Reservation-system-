@@ -6,14 +6,14 @@
   font-family: 'Poppins',sans-serif;
 }
 body{
-  height: 100vh;
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   align-items: center;
-  padding: 10px;
   background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
-.container{
+
+.signup-container{
+  margin-top: 40px;
   max-width: 700px;
   width: 100%;
   background-color: #fff;
@@ -21,12 +21,13 @@ body{
   border-radius: 5px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.15);
 }
-.container .title{
+
+.signup-container .title{
   font-size: 25px;
   font-weight: 500;
   position: relative;
 }
-.container .title::before{
+.signup-container .title::before{
   content: "";
   position: absolute;
   left: 0;
