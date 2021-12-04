@@ -4,11 +4,12 @@ body,html{
 body{
   background-color: #EAEAEA;
 }
+
 .title{
   color:#fff;
   padding:7px 0;
 }
-.nav-link{
+/* .nav-link{
   color:#fff;
   font-size:1.2rem;
 }
@@ -21,7 +22,66 @@ body{
 }
 .nav-item{
   padding:0 15px;
+} */
+
+/*-----------------------
+    Navbar
+-------------------------*/
+.btn{
+  margin: 5px ;
 }
+
+.navbar-brand{
+  font-family: "Poppins", sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-right: 50px;
+}
+
+.btn-signin{
+  margin-right: 15px;
+}
+
+.nav-link{
+  font-size: 1.3rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: light;
+}
+
+.restaurant_navbar {
+  background: none !important;
+  margin-top: 10px;
+}
+
+.restaurant_list_item {
+  margin:  auto 10px auto;
+}
+
+._toggler {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.restaurant_list_link {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  line-height: 16px;
+  color: #4d4d4d !important;
+  padding: 8px 0 0 0!important;
+}
+
+._active {
+  color: #f55253 !important;
+}
+
+.restaurant_list_link:hover {
+  color: #f55253 !important;
+}
+
+
+/*-----------------------
+    Navbar Ends
+-------------------------*/
 .icon {
   padding-top: 14px;
   min-width: 70px;
@@ -55,7 +115,7 @@ body{
 
 /* For booking section */
 .book-a-table{
-  background-color: #D9CAB3;
+  background-color: #fff;
   width:25%;
   height:380px;
   float:left;
@@ -165,7 +225,8 @@ p{
   padding-left:8px;
 }
 .book-button{
-  margin-left:12px;
+  margin: 0 45px;
+  max-width: 75%;
   background-color:#B91646;
 }
 .book-button:hover{

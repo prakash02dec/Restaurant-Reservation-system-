@@ -32,20 +32,20 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav nav mb-2 mb-lg-0 restaurant_list">
                     <li class="nav-item restaurant_list_item">
-                        <a class="nav-link _active restaurant_list_link" aria-current="page" href="#feaures">Home</a>
+                        <a class="nav-link _active restaurant_list_link" aria-current="page" href="#0">Home</a>
                     </li>
                     <li class="nav-item restaurant_list_item">
-                        <a class="nav-link restaurant_list_link" href="#feature" tabindex="-1"
-                            aria-disabled="true">Features</a>
+                        <a class="nav-link restaurant_list_link" href="#0" tabindex="-1"
+                            aria-disabled="true">Service</a>
                     </li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right ms-auto">
                   <li class="nav-item">
-                      <form> <button class="btn btn-dark btn-lg btn-signin" type="submit">Sign in</button></form>
+                      <form><button class="btn btn-dark btn-lg btn_sign" type="submit">Sign in</button></form>
                   </li>
                   <li class="nav-item">
-                      <form><button class="btn btn-lg btn-outline-dark" type="submit">Sign up</button>
+                      <form><button class="btn btn-lg btn-outline-dark btn_sign" type="submit">Sign up</button>
                   </li>
                 </ul>
 
@@ -68,7 +68,7 @@
                             <div class="book-now">
                                 <div class="row">
                                     <div class="col-xl-4 col-lg-5 col-md-3 col-sm-4 col-4 ms-auto ms-md-0">
-                                        <a href="#0" class="book-btn">Book Now</a>
+                                        <a href="#0" class="book-btn" id="book-button">Book Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
                     <div class="row">
                         <div class="col-xl-10 col-lg-12 col-md-12 col-sm-12 mx-auto">
                             <div class="row">
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" id='reserve-div'>
                                     <div class="service_content_inner">
                                         <div class="service_content_bg"></div>
                                         <div class="service_content">
@@ -110,7 +110,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" id='payment-div'>
                                     <div class="service_content_inner">
                                         <div class="service_content_bg"></div>
                                         <div class="service_content">
@@ -125,7 +125,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
+                                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12" id='cancellation-div'>
                                     <div class="service_content_inner">
                                         <div class="service_content_bg"></div>
                                         <div class="service_content">
@@ -149,7 +149,7 @@
     </section>
     <!-- Service  Section Ends -->
     <!-- Feature 1 Section -->
-    <section class="_feature_wrapper" id="feature">
+    <section class="_feature_wrapper">
         <div class="_feature_wrap">
             <div class="container">
                 <div class="row">
@@ -229,6 +229,17 @@
           <a class="btn btn-outline-light" href="#!" role="button">
             <i class="fab fa-instagram"></i>
           </a>
+
+          <!-- Linkedin -->
+          <a class="btn btn-outline-light" href="#!" role="button">
+            <i class="fab fa-linkedin-in"></i
+          </a>
+
+          <!-- Github -->
+          <a class="btn btn-outline-light" href="#!" role="button">
+            <i class="fab fa-github"></i>
+          </a>
+        </section>
         <!-- Section: Social media -->
       </div>
       <!-- Grid container -->
