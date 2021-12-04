@@ -3,8 +3,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
-const cheerio = require('cheerio');
-
 const session = require("express-session");
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
@@ -17,12 +15,14 @@ app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({
   extended: true
-}))
+}));
+
 app.use(session({
   secret: "our little secret",
   resave: false,
   saveUninitialized: false
-}))
+}));
+
 app.use(passport.initialize());
 app.use(passport.session())
 
@@ -36,7 +36,6 @@ const userSchema = new mongoose.Schema({
   phone: String,
   gender: String,
   photourl: String
-
 });
 
 const cityRestuarantSchema = new mongoose.Schema({
@@ -68,7 +67,7 @@ passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: "http://localhost:3000/auth/google/resdine",
-},
+  },
   function (accessToken, refreshToken, profile, cb) {
     // console.log(profile)
     User.findOrCreate({ googleId: profile.id, username: profile.emails[0].value, name: profile.displayName, photourl: profile.photos[0].value }, function (err, user) {
@@ -80,6 +79,7 @@ passport.use(new GoogleStrategy({
 app.get("/", function (req, res) {
   res.render("home");
 });
+
 app.get("/selectcity", function (req, res) {
   res.render("selectcity")
 })
@@ -88,6 +88,7 @@ app.post("/selectcity", function (req, res) {
   console.log(req.body)
   res.render("restaurantcity", { cityname: req.body.city })
 })
+
 app.get('/auth/google', passport.authenticate('google', { scope: ["email", "profile"] }));
 
 app.get('/auth/google/resdine',
@@ -125,8 +126,8 @@ app.post("/signup", function (req, res) {
 
 app.get("/login", function (req, res) {
   res.render("login");
-
 })
+
 app.post("/login", function (req, res) {
   const user = new User({
     username: req.body.username,

@@ -1,5 +1,5 @@
 # Restaurant-Reservation-system-
-*** 
+***
 **OOPs Course Mini Project**
 ---
 ### Team Members
@@ -10,7 +10,7 @@
 | [Nimish Mangee](https://github.com/Nimishmangee) | 20bcs094@iiitdwd.ac.in |20bcs094| Frontend |
 | [Prakash Agarwal](https://github.com/prakash02dec) | prakash02dec@gmail.com |20bcs099| Backend |
 | [Sudeepto Chatterjee](https://github.com/sudeepto147) | sudeepto11032001@gmail.com |20bcs130| Frontend |
-		
+
 ### Project Objectives
 <!-- **A website for restaurant management which will have the following features:** -->
 * Here, we want to provide a service for medium-to-high end restaurants to avail more reservations.
@@ -18,11 +18,12 @@
 * Our website would also help users to find good restaurants in their area.
 
 
-#### FRAMEWORK AND LANGUAGE USED 
+#### FRAMEWORK AND LANGUAGE USED
 1. HTML/CSS
 2. Javascript
 3. Bootstrap
-4. SQL
+4. NodeJS
+5. Express.js
+6. MongoDB
 
 _LATER WILL BE UPDATED AS WE PROCEED_
-
