@@ -259,8 +259,8 @@ a {
 
 .service_content_bg {
   position: absolute;
-  width: 310px;
-  height: 350px;
+  width: 90%;
+  height: 100%;
   background: #fe6a6a;
   border-radius: 12px;
   left: 28px;
