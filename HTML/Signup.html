@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResDine</title>
+    <script src="https://kit.fontawesome.com/1cec56f29b.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../public/css/home.css">
+    <link rel="stylesheet" href="../public/css/login.css">
+    <link rel="stylesheet" href="../public/css/signup.css">
+    <link rel="stylesheet" href="../public/css/HomePagenew.css">
+    <link rel="stylesheet" href="../public/css/bootstrap-social.css">
+   </head>
+<body>
+  <!-- Navbar start -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light restaurant_navbar">
+      <div class="container">
+          <a class="navbar-brand" href="./index.html">ResDine</a>
+          <button class="navbar-toggler _toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav nav mb-2 mb-lg-0 restaurant_list">
+                  <li class="nav-item restaurant_list_item">
+                      <a class="nav-link _active restaurant_list_link" aria-current="page" href="./index.html">Home</a>
+                  </li>
+                  <li class="nav-item restaurant_list_item">
+                      <a class="nav-link restaurant_list_link" href="./index.html#features" tabindex="-1"
+                          aria-disabled="true">Features</a>
+                  </li>
+              </ul>
+
+              <ul class="nav navbar-nav navbar-right ms-auto">
+                <li class="nav-item">
+                    <a href="Login.html"><button class="btn btn-dark btn-lg btn_sign">Sign in</button></a>
+                </li>
+                <li class="nav-item">
+                    <a href="Signup.html"><button class="btn btn-lg btn-outline-dark btn_sign">Sign up</button></a>
+                </li>
+              </ul>
+
+          </div>
+      </div>
+  </nav>
+  <!-- Navbar Ends -->
+
+  <div class="signup-container container">
+    <div class="title">Registration</div>
+    <div class="content">
+      <form action="/signup" method="post">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Full Name</span>
+            <input name="name" type="text" placeholder="Enter your name" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Address</span>
+            <input name="address" type="text" placeholder="Enter your address" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input name="username" type="email" placeholder="Enter your email" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Phone Number</span>
+            <input name="number" type="text" placeholder="Enter your number" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Password</span>
+            <input name="password" type="password" placeholder="Enter your password" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Confirm Password</span>
+            <input name="confirmed_password" type="password" placeholder="Confirm your password" required>
+          </div>
+        </div>
+        <div class="gender-details">
+          <input type="radio" name="gender"  value="Male" id="dot-1">
+          <input type="radio" name="gender" value="Female" id="dot-2">
+          <input type="radio" name="gender" value="Prefer not to say" id="dot-3">
+          <span class="gender-title">Gender</span>
+          <div class="category">
+            <label for="dot-1">
+              <span class="dot one"></span>
+              <span class="gender">Male</span>
+            </label>
+            <label for="dot-2">
+              <span class="dot two"></span>
+              <span class="gender">Female</span>
+            </label>
+            <label for="dot-3">
+              <span class="dot three"></span>
+              <span class="gender">Prefer not to say</span>
+            </label>
+          </div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Register">
+        </div>
+      </form>
+    </div>
+
+
+    <div class="card-body">
+      <div class="card social-block">
+        <a class="btn btn-block btn-social btn-google" href="/auth/google" role="button">
+          <i class="fab fa-google"></i>
+          Sign Up with Google
+        </a>
+      </div>
+    </div>
+
+
+
+  </div>
+</body>
+</html>
