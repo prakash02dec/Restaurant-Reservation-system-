@@ -12,6 +12,7 @@ const _ = require("lodash")
 
 const app = express();
 
+var loginStatus = 0;
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({
@@ -82,7 +83,9 @@ passport.use(new GoogleStrategy({
 ));
 
 app.get("/", function (req, res) {
-  res.render("home");
+  res.render("home", {
+    loginStatus: loginStatus
+  });
 });
 
 app.get('/auth/google', passport.authenticate('google', { scope: ["email", "profile"] }));
@@ -91,17 +94,16 @@ app.get('/auth/google/resdine',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function (req, res) {
     // Successful authentication, redirect home.
+    loginStatus = 1;
     res.redirect("/selectcity");
   });
 
 app.get("/signup", function (req, res) {
-  res.render("signup");
+  res.render("signup", {
+    loginStatus: loginStatus
+  });
 })
 
-
-// app.post("/signup",function(req , res){
-//   console.log(req.body)
-// })
 app.post("/signup", function (req, res) {
   User.register({
     username: req.body.username,
@@ -122,7 +124,9 @@ app.post("/signup", function (req, res) {
 })
 
 app.get("/login", function (req, res) {
-  res.render("login");
+  res.render("login", {
+    loginStatus: loginStatus
+  });
 })
 
 app.post("/login", function (req, res) {
@@ -141,32 +145,34 @@ app.post("/login", function (req, res) {
 })
 
 app.get("/selectcity", function (req, res) {
-  res.render("selectcity")
+  res.render("selectcity", {
+    loginStatus: loginStatus
+  })
 })
 
 app.post("/selectcity", function (req, res) {
-  res.redirect("/restaurantcity/"+req.body.city)
-  
+  res.redirect("/restaurantcity/"+req.body.city);
 })
-app.get("/restaurantcity/:city",function(req,res){
+
+app.get("/restaurantcity/:city", function(req,res){
   const cityName = _.capitalize(req.params.city)
-  
+
   cityRestuarant.find({city : cityName},function(err, foundRestaurants){
     if(err){
       console(err);
     }else{
-      res.render("restaurantcity", { restaurants : foundRestaurants });
+      res.render("restaurantcity", { restaurants : foundRestaurants, loginStatus : loginStatus });
     }
   })
-
 })
+
 app.get("/restaurantpage/:name",function(req,res){
     const restaurantName = req.params.name
     cityRestuarant.findOne({name : restaurantName},function(err, foundRestaurant){
       if(err){
         console(err);
       }else{
-        res.render("restaurantpage", { restaurant : foundRestaurant });
+        res.render("restaurantpage", { restaurant : foundRestaurant, loginStatus : loginStatus });
       }
     })
 })
