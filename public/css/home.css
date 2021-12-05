@@ -142,7 +142,20 @@ a {
   color: #f55253 !important;
 }
 
+.profile-pic{
+  height: 50px;
+  width: 50px;
+  margin-top: 5px;
+  border-radius: 50%;
+}
 
+.profile-name{
+  color: black;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 0;
+  font-size: 26px;
+}
 /*-----------------------
     Navbar Ends
 -------------------------*/
