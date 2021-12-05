@@ -14,7 +14,7 @@ body{
 	height: 100vh;
 }
 .login-card{
-	margin: 100px auto;
+	margin: 80px auto 40px;
 	width: 350px;
 	height: 430px;
 	perspective: 1500px;
@@ -146,5 +146,5 @@ input[type=email]::placeholder{
 
 .social{
 	margin: auto;
-	width: 24rem;
+	width: 20rem;
 }

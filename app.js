@@ -8,6 +8,7 @@ const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
+const _ = require("lodash")
 
 const app = express();
 
@@ -39,10 +40,13 @@ const userSchema = new mongoose.Schema({
 });
 
 const cityRestuarantSchema = new mongoose.Schema({
+  city : String,
   name: String,
   address :String,
   ratings : String,
   phone : String,
+  costfor : String,
+  openfrom : String,
   userReview : [String]
 });
 
@@ -50,6 +54,7 @@ userSchema.plugin(passportLocalMongoose);
 userSchema.plugin(findOrCreate);
 
 const User = mongoose.model("User", userSchema);
+const cityRestuarant = mongoose.model("cityRestuarant", cityRestuarantSchema);
 
 passport.use(User.createStrategy());
 
@@ -80,15 +85,6 @@ app.get("/", function (req, res) {
   res.render("home");
 });
 
-app.get("/selectcity", function (req, res) {
-  res.render("selectcity")
-})
-
-app.post("/selectcity", function (req, res) {
-  console.log(req.body)
-  res.render("restaurantcity", { cityname: req.body.city })
-})
-
 app.get('/auth/google', passport.authenticate('google', { scope: ["email", "profile"] }));
 
 app.get('/auth/google/resdine',
@@ -101,6 +97,7 @@ app.get('/auth/google/resdine',
 app.get("/signup", function (req, res) {
   res.render("signup");
 })
+
 
 // app.post("/signup",function(req , res){
 //   console.log(req.body)
@@ -141,6 +138,37 @@ app.post("/login", function (req, res) {
       })
     }
   })
+})
+
+app.get("/selectcity", function (req, res) {
+  res.render("selectcity")
+})
+
+app.post("/selectcity", function (req, res) {
+  res.redirect("/restaurantcity/"+req.body.city)
+  
+})
+app.get("/restaurantcity/:city",function(req,res){
+  const cityName = _.capitalize(req.params.city)
+  
+  cityRestuarant.find({city : cityName},function(err, foundRestaurants){
+    if(err){
+      console(err);
+    }else{
+      res.render("restaurantcity", { restaurants : foundRestaurants });
+    }
+  })
+
+})
+app.get("/restaurantpage/:name",function(req,res){
+    const restaurantName = req.params.name
+    cityRestuarant.findOne({name : restaurantName},function(err, foundRestaurant){
+      if(err){
+        console(err);
+      }else{
+        res.render("restaurantpage", { restaurant : foundRestaurant });
+      }
+    })
 })
 
 app.listen(3000, function () {

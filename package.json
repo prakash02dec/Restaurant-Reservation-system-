@@ -17,6 +17,7 @@
     "express-session": "^1.17.2",
     "jquery": "^3.6.0",
     "jsdom": "^19.0.0",
+    "lodash": "^4.17.21",
     "mongoose": "^6.0.14",
     "mongoose-findorcreate": "^3.0.0",
     "passport": "^0.5.0",
@@ -27,11 +28,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/omkmorendha/Restaurant-Reservation-system-.git"
+    "url": "git+https://github.com/prakash02dec/Restaurant-Reservation-system-.git"
   },
   "bugs": {
-    "url": "https://github.com/omkmorendha/Restaurant-Reservation-system-/issues"
+    "url": "https://github.com/prakash02dec/Restaurant-Reservation-system-/issues"
   },
-  "homepage": "https://github.com/omkmorendha/Restaurant-Reservation-system-#readme",
+  "homepage": "https://github.com/prakash02dec/Restaurant-Reservation-system-#readme",
   "description": ""
 }

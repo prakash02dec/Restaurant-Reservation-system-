@@ -1,5 +1,102 @@
 <%- include("partials/header") %>
 
-<h1><%= cityname %> </h1>
+  <header>
 
-<%- include("partials/footer") %> 
+    <!-- Displays current city -->
+    <h1 class="restaurant-title ">
+      <%= restaurants[0].city %>
+    </h1>
+
+    <div class="container restaurant-container">
+      <main class="grid">
+        <% restaurants.forEach(function(restaurant) { %>
+          <article>
+            <img alt="city-image" src="/images/restaurant-default.jpg" class="left">
+            <div class="text">
+              <h2 class="restaurant-name"><%= restaurant.name %> </h2>
+              <div>
+                <button onclick="window.location.href='/restaurantpage/<%= restaurant.name%>'" type="button"
+                  class="btn btn-primary btn-lg col-4 book-button">Book Table</button>
+              </div>
+              <h4 class="restaurant-address"><%= restaurant.address %> , <%= restaurant.phone %></h4><br />
+  
+              <div>
+                <h7 style="color:white;" class="bg-success"><%= restaurant.costfor %></h7>
+              </div>
+  
+              <div>
+                <i class="fas fa-clock "></i>
+                <span style="color:green;"><%= restaurant.openfrom %></span>
+                <i style="padding-left: 2%;" class="fas fa-location-arrow"></i>
+                <span>View Location </span>
+                <br>
+                <i class="fas fa-star icon-rating"></i>
+                <span><%= restaurant.ratings %></span>
+                <i style="padding-left: 5.5%;" class="fas fa-book-reader"></i>
+                <span>See Menu</span>
+              </div>
+            </div>
+          </article>
+        <% }) %>
+
+        <!-- <article>
+          <img alt="city-image" src="/images/restaurant-default.jpg" class="left">
+          <div class="text">
+            <h2 class="restaurant-name">Bikanervala</h2>
+            <div>
+              <button onclick="window.location.href='https://www.google.com'" type="button"
+                class="btn btn-primary btn-lg col-4 book-button">Book Table</button>
+            </div>
+            <h4 class="restaurant-address">Karol Bagh, New Delhi-89</h4><br />
+
+            <div>
+              <h7 style="color:white;" class="bg-success">Cost for 2 1600 approx</h7>
+            </div>
+
+            <div>
+              <i class="fas fa-clock "></i>
+              <span style="color:green;">Open from</span>
+              <i style="padding-left: 2%;" class="fas fa-location-arrow"></i>
+              <span>View Location </span>
+              <br>
+              <i class="fas fa-star icon-rating"></i>
+              <span>Ratings</span>
+              <i style="padding-left: 5.5%;" class="fas fa-book-reader"></i>
+              <span>See Menu</span>
+            </div>
+          </div>
+        </article>
+        <article>
+          <img alt="city-image" src="/images/restaurant-default.jpg" class="left">
+          <div class="text">
+            <h2 class="restaurant-name">Bikanervala</h2>
+            <div>
+              <button onclick="window.location.href='https://www.google.com'" type="button"
+                class="btn btn-primary btn-lg col-4 book-button">Book Table</button>
+            </div>
+            <h4 class="restaurant-address">Karol Bagh, New Delhi-89</h4><br />
+
+            <div>
+              <h7 style="color:white;" class="bg-success">Cost for 2 1600 approx</h7>
+            </div>
+
+            <div>
+              <i class="fas fa-clock "></i>
+              <span style="color:green;">Open from</span>
+              <i style="padding-left: 2%;" class="fas fa-location-arrow"></i>
+              <span>View Location </span>
+              <br>
+              <i class="fas fa-star icon-rating"></i>
+              <span>Ratings</span>
+              <i style="padding-left: 5.5%;" class="fas fa-book-reader"></i>
+              <span>See Menu</span>
+            </div>
+          </div>
+        </article> -->
+
+      </main>
+    </div>
+  </header>
+
+
+  <%- include("partials/footer") %>
