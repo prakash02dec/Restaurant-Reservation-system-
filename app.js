@@ -19,6 +19,23 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+function navRender(page, req, res){
+  if(req.isAuthenticated()){
+    res.render(page, {
+      loginStatus: loginStatus,
+      profilePic: req.user.photourl,
+      profileName: req.user.name
+    })
+  }
+  else{
+    res.render(page, {
+      loginStatus: loginStatus,
+      profilePic: 0,
+      profileName: 0
+    });
+  }
+}
+
 app.use(session({
   secret: "our little secret",
   resave: false,
@@ -83,9 +100,7 @@ passport.use(new GoogleStrategy({
 ));
 
 app.get("/", function (req, res) {
-  res.render("home", {
-    loginStatus: loginStatus
-  });
+  navRender("home", req, res);
 });
 
 app.get('/auth/google', passport.authenticate('google', { scope: ["email", "profile"] }));
@@ -99,9 +114,7 @@ app.get('/auth/google/resdine',
   });
 
 app.get("/signup", function (req, res) {
-  res.render("signup", {
-    loginStatus: loginStatus
-  });
+  navRender("signup", req, res);
 })
 
 app.post("/signup", function (req, res) {
@@ -124,9 +137,7 @@ app.post("/signup", function (req, res) {
 })
 
 app.get("/login", function (req, res) {
-  res.render("login", {
-    loginStatus: loginStatus
-  });
+  navRender("login", req, res);
 })
 
 app.post("/login", function (req, res) {
@@ -145,23 +156,36 @@ app.post("/login", function (req, res) {
 })
 
 app.get("/selectcity", function (req, res) {
-  res.render("selectcity", {
-    loginStatus: loginStatus
-  })
+  navRender("selectcity", req, res);
 })
 
 app.post("/selectcity", function (req, res) {
   res.redirect("/restaurantcity/"+req.body.city);
 })
 
-app.get("/restaurantcity/:city", function(req,res){
-  const cityName = _.capitalize(req.params.city)
+app.get("/restaurantcity/:city", function(req, res){
+  const cityName = _.startCase(_.toLower(req.params.city));
 
   cityRestuarant.find({city : cityName},function(err, foundRestaurants){
     if(err){
       console(err);
     }else{
-      res.render("restaurantcity", { restaurants : foundRestaurants, loginStatus : loginStatus });
+      if(req.isAuthenticated()){
+        res.render("restaurantcity", {
+          loginStatus: loginStatus,
+          profilePic: req.user.photourl,
+          profileName: req.user.name,
+          restaurants : foundRestaurants
+        });
+      }
+      else{
+        res.render("restaurantcity", {
+          loginStatus: loginStatus,
+          profilePic: 0,
+          profileName: 0,
+          restaurants : foundRestaurants
+        });
+      }
     }
   })
 })
@@ -172,7 +196,22 @@ app.get("/restaurantpage/:name",function(req,res){
       if(err){
         console(err);
       }else{
-        res.render("restaurantpage", { restaurant : foundRestaurant, loginStatus : loginStatus });
+        if(req.isAuthenticated()){
+          res.render("restaurantpage", {
+            loginStatus: loginStatus,
+            profilePic: req.user.photourl,
+            profileName: req.user.name,
+            restaurant : foundRestaurant
+          })
+        }
+        else{
+          res.render("restaurantpage", {
+            loginStatus: loginStatus,
+            profilePic: 0,
+            profileName: 0,
+            restaurant : foundRestaurant
+          });
+        }
       }
     })
 })
