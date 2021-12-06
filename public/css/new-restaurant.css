@@ -23,11 +23,13 @@ h1{
   background-size: cover;
   height: 90%;
   width: 100%;
+  position: absolute;
 }
 
 .restaurant-title-content {
-  /* position: relative; */
-  margin: 5px 10px;
+  position: relative;
+  z-index: 1;
+  margin: 450px 10px 5px;
   padding: 7% 7% 7% 10%;
 }
 .restaurant-info-container-wrap {
@@ -50,8 +52,8 @@ padding:1% 10px 5%;
   padding: 1% 10px 10%;
 }
 
-.icon-rating{
-  color:red;
+.rating-star {
+  color: #ffd700;
 }
 
 .item{
@@ -90,8 +92,6 @@ padding:1% 10px 5%;
 }
 .book-a-table-icon{
   margin:auto;
-  /* padding-right: 5px;
-  padding-left: 8px;*/
   float: left;
 }
 
@@ -117,8 +117,8 @@ padding:1% 10px 5%;
   border-color: #f55253;
 }
 
-.d-block {
-  max-height: 500px;
+.carousel-image {
+  max-height: 30rem;
 }
 
 #date-of-booking{
@@ -130,4 +130,75 @@ padding:1% 10px 5%;
 
 #book-a-table-col {
   padding-left: 3%;
+}
+
+@media only screen and (max-width: 992px) {
+  .nav-link {
+    padding: 0.5rem 1rem;
+  }
+
+  .book-a-table {
+    padding: 7% 7% 7% 10%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .restaurant-info-container-wrap {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .carousel-image {
+    max-height: 25rem;
+  }
+
+  #about-tab {
+    font-size: 1.3rem;
+  }
+  #menu-tab {
+    font-size: 1.3rem;
+  }
+  #images-tab {
+    font-size: 1.3rem;
+  }
+  #book-a-table-col {
+    padding-left: 12px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .nav-link {
+    padding: 0.5rem 1rem;
+  }
+  .restaurant-features-right{
+    padding: 1% 10px 5%;
+  }
+
+  .book-a-table {
+    padding: 7% 7% 7% 10%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .restaurant-info-container-wrap {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .carousel-image {
+    max-height: 20rem;
+  }
+
+  #about-tab {
+    font-size: 1.3rem;
+  }
+  #menu-tab {
+    font-size: 1.3rem;
+  }
+  #images-tab {
+    font-size: 1.3rem;
+  }
+  #book-a-table-col {
+    padding-left: 12px;
+  }
 }

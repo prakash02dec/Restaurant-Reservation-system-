@@ -20,45 +20,41 @@
   <link rel="stylesheet" href="../public/css/home.css">
   <link rel="stylesheet" href="../public/css/login.css">
   <link rel="stylesheet" href="../public/css/signup.css">
-  <link rel="stylesheet" href="../public/css/HomePagenew.css">
   <link rel="stylesheet" href="../public/css/bootstrap-social.css">
+  <link rel="stylesheet" href="../public/css/HomePagenew.css">
   <link rel="stylesheet" href="../public/css/new-restaurant.css">
 </head>
 
 <body>
-  <!-- Navbar start -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light restaurant_navbar">
-      <div class="container">
-          <a class="navbar-brand" href="./index.html">ResDine</a>
-          <button class="navbar-toggler _toggler" type="button" data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-              aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav nav mb-2 mb-lg-0 restaurant_list">
-                  <li class="nav-item restaurant_list_item">
-                      <a class="nav-link _active restaurant_list_link" aria-current="page" href="./index.html">Home</a>
-                  </li>
-                  <li class="nav-item restaurant_list_item">
-                      <a class="nav-link restaurant_list_link" href="./index.html#features" tabindex="-1"
-                          aria-disabled="true">Features</a>
-                  </li>
-              </ul>
+    <div class="container ">
+      <a class="navbar-brand" href="/">ResDine</a>
+      <button class="navbar-toggler _toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav nav mb-2 mb-lg-0 restaurant_list">
+          <li class="nav-item restaurant_list_item">
+            <a class="nav-link restaurant_list_link" id="home-btn" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item restaurant_list_item">
+            <a class="nav-link restaurant_list_link" href="/#feature" tabindex="-1" aria-disabled="true">Features</a>
+          </li>
+        </ul>
 
-              <ul class="nav navbar-nav navbar-right ms-auto">
-                <li class="nav-item">
-                    <a href="Login.html"><button class="btn btn-dark btn-lg btn_sign">Sign in</button></a>
-                </li>
-                <li class="nav-item">
-                    <a href="Signup.html"><button class="btn btn-lg btn-outline-dark btn_sign">Sign up</button></a>
-                </li>
-              </ul>
+        <ul class="nav navbar-nav navbar-right ms-auto">
+          <li class="nav-item">
+            <a href="/login"><button class="btn btn-dark btn-lg">Sign in</button></a>
+          </li>
+          <li class="nav-item">
+            <a href="/signup"><button class="btn btn-lg btn-outline-dark">Sign up</button></a>
+          </li>
+        </ul>
 
-          </div>
       </div>
+    </div>
   </nav>
-  <!-- Navbar Ends -->
+  <!-- navbar-end -->
 
   <section class="restaurant-title-img container-fluid">
   </section>
@@ -66,7 +62,7 @@
   <section class="restaurant-title-content">
     <div class="main-container">
       <div class="row">
-          <div class="col col-lg-8 col-md-8 col-sm-12">
+          <div class="col col-lg-8 col-md-12 col-sm-12">
             <div class="restaurant-info-container-wrap">
             <div class="restaurant-info-container">
               <div class="row">
@@ -90,7 +86,7 @@
                 <div class="col col-lg-6 col-md-6 col-sm-12">
                   <div class="restaurant-features-right">
                     <i class="fas fa-star icon-rating"></i>
-                    Ratings: ⭐⭐⭐⭐⭐
+                    Ratings: 4.5 <i class="fas fa-star rating-star"></i>
                   </div>
                 </div>
                 <div class="col col-lg-6 col-md-6 col-sm-12">
@@ -101,17 +97,6 @@
                 </div>
               </div>
               <div class="col col-lg-12 col-md-12 col-sm-12">
-                <!-- <ul class="nav">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#about">About</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#menu">Menu</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#images">Photos</a>
-                  </li>
-                </ul> -->
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                   <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="about-tab" data-bs-toggle="tab" data-bs-target="#about" type="button" role="tab" aria-controls="about" aria-selected="true">About</button>
@@ -137,32 +122,8 @@
                   <div class="tab-pane fade" id="menu" role="tabpanel" aria-labelledby="profile-tab">
                     <h4 class="about-restaurant">Lord of the Drinks <b style="color:green">Menus</b></h4>
                     <hr /><br />
-                    <!-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    </div>
-                    <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <img src="images/feature_1_img.jpg" class="d-block w-100" alt="menu1">
-                      </div>
-                      <div class="carousel-item">
-                        <img src="images/feature_2_img.jpg" class="d-block w-100" alt="menu2">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div> -->
                     <div class="">
-                      <img src="images/feature_1_img.jpg" class="" alt="menu1">
-                      <img src="images/feature_2_img.jpg" class="" alt="menu2">
+                      <img src="../public/images/feature_1_img.jpg" class="" alt="menu1">
                     </div>
                     <br /><br /><br />
                   </div>
@@ -177,13 +138,13 @@
                       </div>
                       <div class="carousel-inner">
                         <div class="carousel-item active">
-                          <img src="images/feature_1_img.jpg" class="d-block w-100" alt="...">
+                          <img src="../public/images/feature_1_img.jpg" class="carousel-image d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                          <img src="images/feature_2_img.jpg" class="d-block w-100" alt="...">
+                          <img src="../public/images/feature_2_img.jpg" class="carousel-image d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
-                          <img src="images/feature_1_img.jpg" class="d-block w-100" alt="...">
+                          <img src="../public/images/feature_1_img.jpg" class="carousel-image d-block w-100" alt="...">
                         </div>
                       </div>
                       <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -201,7 +162,7 @@
             </div>
           </div>
         </div>
-        <div class="col col-lg-4 col-md-4 col-sm-12" id='book-a-table-col'>
+        <div class="col col-lg-4 col-md-12 col-sm-12" id='book-a-table-col'>
           <section class="book-a-table">
 
             <h3>Make a Reservation</h3>
