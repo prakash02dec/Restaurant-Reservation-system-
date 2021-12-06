@@ -1,0 +1,204 @@
+p{
+  line-height: 200%;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+h3{
+  text-align: center;
+  padding-top:5%;
+}
+hr{
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+h1{
+  text-align: center;
+}
+
+.restaurant-title-img {
+  background-image: url("../images/title-img1.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 90%;
+  width: 100%;
+  position: absolute;
+}
+
+.restaurant-title-content {
+  position: relative;
+  z-index: 1;
+  margin: 450px 10px 5px;
+  padding: 7% 7% 7% 10%;
+}
+.restaurant-info-container-wrap {
+  background-color: #f9f9f9;
+  border-radius: 2%;
+}
+
+.restaurant-info-container {
+  padding: 5%;
+}
+.restaurant-name {
+  padding-bottom: 50px;
+}
+
+.restaurant-features-left{
+padding:1% 10px 5%;
+}
+
+.restaurant-features-right{
+  padding: 1% 10px 10%;
+}
+
+.rating-star {
+  color: #ffd700;
+}
+
+.item{
+  float:left;
+}
+
+.about-restaurant{
+  margin: 5% 1%;
+}
+
+#about-tab {
+  color: #f55253;
+}
+
+#menu-tab {
+  color: #f55253;
+}
+
+#images-tab {
+  color: #f55253;
+}
+
+.book-a-table {
+  background-color: #f9f9f9;
+  border-radius: 2%;
+}
+
+.guest-container {
+  padding-left: 5%;
+}
+.date-container {
+  padding-left: 5%;
+}
+.time-container {
+  padding-left: 5%;
+}
+.book-a-table-icon{
+  margin:auto;
+  float: left;
+}
+
+.custom-select {
+  margin-left: 5%;
+  padding: 5px 0;
+}
+
+.custom-select-guest {
+  margin-left: 3%;
+}
+
+
+.book-button{
+  margin: 5% 10% 5% 14%;
+  max-width: 75%;
+  background-color:#f55253;
+  border-color: #f55253;
+}
+.book-button:hover{
+  background-color: #fff;
+  color: #f55253;
+  border-color: #f55253;
+}
+
+.carousel-image {
+  max-height: 30rem;
+}
+
+#date-of-booking{
+  margin-bottom: 22px;
+  margin-left: 5%;
+  padding:1% 0 1% 3px;
+  width:75%;
+}
+
+#book-a-table-col {
+  padding-left: 3%;
+}
+
+@media only screen and (max-width: 992px) {
+  .nav-link {
+    padding: 0.5rem 1rem;
+  }
+
+  .book-a-table {
+    padding: 7% 7% 7% 10%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .restaurant-info-container-wrap {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .carousel-image {
+    max-height: 25rem;
+  }
+
+  #about-tab {
+    font-size: 1.3rem;
+  }
+  #menu-tab {
+    font-size: 1.3rem;
+  }
+  #images-tab {
+    font-size: 1.3rem;
+  }
+  #book-a-table-col {
+    padding-left: 12px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .nav-link {
+    padding: 0.5rem 1rem;
+  }
+  .restaurant-features-right{
+    padding: 1% 10px 5%;
+  }
+
+  .book-a-table {
+    padding: 7% 7% 7% 10%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .restaurant-info-container-wrap {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .carousel-image {
+    max-height: 20rem;
+  }
+
+  #about-tab {
+    font-size: 1.3rem;
+  }
+  #menu-tab {
+    font-size: 1.3rem;
+  }
+  #images-tab {
+    font-size: 1.3rem;
+  }
+  #book-a-table-col {
+    padding-left: 12px;
+  }
+}

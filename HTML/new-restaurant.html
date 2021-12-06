@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ResDine</title>
+  <script src="https://kit.fontawesome.com/1cec56f29b.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js%22%3E"></script>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js%22%3E"></script>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../public/css/home.css">
+  <link rel="stylesheet" href="../public/css/login.css">
+  <link rel="stylesheet" href="../public/css/signup.css">
+  <link rel="stylesheet" href="../public/css/bootstrap-social.css">
+  <link rel="stylesheet" href="../public/css/HomePagenew.css">
+  <link rel="stylesheet" href="../public/css/new-restaurant.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light restaurant_navbar">
+    <div class="container ">
+      <a class="navbar-brand" href="/">ResDine</a>
+      <button class="navbar-toggler _toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav nav mb-2 mb-lg-0 restaurant_list">
+          <li class="nav-item restaurant_list_item">
+            <a class="nav-link restaurant_list_link" id="home-btn" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item restaurant_list_item">
+            <a class="nav-link restaurant_list_link" href="/#feature" tabindex="-1" aria-disabled="true">Features</a>
+          </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right ms-auto">
+          <li class="nav-item">
+            <a href="/login"><button class="btn btn-dark btn-lg">Sign in</button></a>
+          </li>
+          <li class="nav-item">
+            <a href="/signup"><button class="btn btn-lg btn-outline-dark">Sign up</button></a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+  <!-- navbar-end -->
+
+  <section class="restaurant-title-img container-fluid">
+  </section>
+
+  <section class="restaurant-title-content">
+    <div class="main-container">
+      <div class="row">
+          <div class="col col-lg-8 col-md-12 col-sm-12">
+            <div class="restaurant-info-container-wrap">
+            <div class="restaurant-info-container">
+              <div class="row">
+                <div class="col col-lg-12 col-md-12 col-sm-12">
+                  <div class="restaurant-name">
+                    <h1><b>Restaurant Name</b></h1>
+                  </div>
+                </div>
+                <div class="col col-lg-6 col-md-6 col-sm-12">
+                  <div class="restaurant-features-left">
+                    <i class="fas fa-location-arrow"></i>
+                    Location of Restaurant: Delhi
+                  </div>
+                </div>
+                <div class="col col-lg-6 col-md-6 col-sm-12">
+                  <div class="restaurant-features-left">
+                    <i class="fas fa-clock "></i>
+                    <span>Open from: 11 a.m - 11 p.m</span>
+                  </div>
+                </div>
+                <div class="col col-lg-6 col-md-6 col-sm-12">
+                  <div class="restaurant-features-right">
+                    <i class="fas fa-star icon-rating"></i>
+                    Ratings: 4.5 <i class="fas fa-star rating-star"></i>
+                  </div>
+                </div>
+                <div class="col col-lg-6 col-md-6 col-sm-12">
+                  <div class="restaurant-features-right">
+                    <i class="fas fa-phone-alt"></i>
+                    Call Restaurant: 99999999
+                  </div>
+                </div>
+              </div>
+              <div class="col col-lg-12 col-md-12 col-sm-12">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="about-tab" data-bs-toggle="tab" data-bs-target="#about" type="button" role="tab" aria-controls="about" aria-selected="true">About</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="menu-tab" data-bs-toggle="tab" data-bs-target="#menu" type="button" role="tab" aria-controls="menu" aria-selected="false">Menu</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="images-tab" data-bs-toggle="tab" data-bs-target="#images" type="button" role="tab" aria-controls="images" aria-selected="false">Images</button>
+                  </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="home-tab">
+                    <h4 class="about-restaurant"><b style="color:green">About</b> Lord of the Drinks, Connaught Place (CP), Central Delhi</h4>
+                    <hr />
+                    <p>
+                      Going old school with pubs has become a major trend in gastronomy world and by bringing back the vintage times we have hit upon a jackpot.
+                      But here we are talking about this fantastic chain of pubs that has burst upon Delhi’s night scene.
+                      When we say old school, forget about the British waterholes or Raj era inspired old-fashioned bars.
+                      We are talking about going back centuries in western timeline when fields were strewn with wars and sword carrying warriors.
+                    </p><br /><br />
+                  </div>
+                  <div class="tab-pane fade" id="menu" role="tabpanel" aria-labelledby="profile-tab">
+                    <h4 class="about-restaurant">Lord of the Drinks <b style="color:green">Menus</b></h4>
+                    <hr /><br />
+                    <div class="">
+                      <img src="../public/images/feature_1_img.jpg" class="" alt="menu1">
+                    </div>
+                    <br /><br /><br />
+                  </div>
+                  <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="contact-tab">
+                    <h4 class="about-restaurant">Lord of the Drinks <b style="color:green">Images</b></h4>
+                    <hr /><br />
+                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                      <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                      </div>
+                      <div class="carousel-inner">
+                        <div class="carousel-item active">
+                          <img src="../public/images/feature_1_img.jpg" class="carousel-image d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                          <img src="../public/images/feature_2_img.jpg" class="carousel-image d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                          <img src="../public/images/feature_1_img.jpg" class="carousel-image d-block w-100" alt="...">
+                        </div>
+                      </div>
+                      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                      </button>
+                      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-lg-4 col-md-12 col-sm-12" id='book-a-table-col'>
+          <section class="book-a-table">
+
+            <h3>Make a Reservation</h3>
+            <hr />
+
+            <div class="guest-container">
+              <form class="" action="index.html" method="post">
+                <div class="book-a-table-icon">
+                  <i class="fas fa-user-plus fa-2x"></i>
+                </div>
+                <div class="book-a-table-selection">
+                  <select class="custom-select custom-select-guest custom-select-md mb-3 col-9" style="border:2px solid grey;">
+                    <option selected>Select number of guests</option>
+                    <option value="1">1 Guest</option>
+                    <option value="2">2 Guests</option>
+                    <option value="3">3 Guests</option>
+                    <option value="4">4 Guests</option>
+                    <option value="5">5 Guests</option>
+                    <option value="6">6 Guests</option>
+                    <option value="7">7 Guests</option>
+                  </select>
+                </div>
+              </form>
+            </div>
+            <div class="date-container">
+              <form class="" action="index.html" method="post">
+                <div class="book-a-table-icon">
+                  <i class="fas fa-table fa-2x"></i>
+                </div>
+                <div class="book-a-table-selection">
+                  <input type="date" id="date-of-booking" name="booking-date" style="border:2px solid grey;">
+                </div>
+              </form>
+            </div>
+            <div class="time-container">
+              <form class="" action="index.html" method="post">
+
+
+                <i class="fas fa-clock fa-2x book-a-table-icon"></i>
+                <select class="custom-select custom-select-md mb-3 col-9" style="border:2px solid grey;">
+                  <option selected>Select time</option>
+                  <option value="1">11 A.M</option>
+                  <option value="2">12 P.M</option>
+                  <option value="3">1 P.M</option>
+                  <option value="4">2 P.M</option>
+                  <option value="5">3 P.M</option>
+                  <option value="6">4 P.M</option>
+                  <option value="7">5 P.M</option>
+                  <option value="8">6 P.M</option>
+                  <option value="9">7 P.M</option>
+                  <option value="10">8 P.M</option>
+                  <option value="11">9 P.M</option>
+                  <option value="12">10 P.M</option>
+                  <option value="13">11 P.M</option>
+                </select>
+              </form>
+            </div>
+
+            <button type="button" class="btn btn-danger btn-lg col-11 book-button">Book Table</button>
+          </section>
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+
+  </section>
+
+
+
+  <!-- Footer Section -->
+  <footer>
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+      <!-- Section: Social media -->
+      <section class="mb-4">
+        <!-- Facebook -->
+        <a class="btn btn-outline-light" href="https://www.facebook.com" role="button">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+
+        <!-- Twitter -->
+        <a class="btn btn-outline-light" href="https://www.twitter.com" role="button">
+          <i class="fab fa-twitter"></i>
+        </a>
+
+        <!-- Google -->
+        <a class="btn btn-outline-light" href="https://www.google.com" role="button">
+          <i class="fab fa-google"></i>
+        </a>
+
+        <!-- Instagram -->
+        <a class="btn btn-outline-light" href="https://www.instagram.com" role="button">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3">
+      © 2021 Copyright: ResDine
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer Section ends -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  <script type="text/javascript" src="scripts/homeColor.js">
+
+  </script>
+
+
+</body>
