@@ -73,6 +73,15 @@ body{
 	color: #000;
 	font-weight: bolder;
 }
+.additional-heading{
+	position: absolute;
+	top: 50px;
+	left: 30px;
+	font-size: 23px;
+	color: #000;
+	font-weight: bolder;
+	padding-bottom: 5px;
+}
 p{
 	font-size: 15px;
 	padding: 7px;
@@ -98,6 +107,25 @@ input[type=text]::placeholder,
 input[type=password]::placeholder,
 input[type=email]::placeholder{
 	color: #b5a1a1;
+}
+textarea {
+	width: 95%;
+	height: 90px;
+	padding: 0 15px 15px 15px;
+	margin: 10px 8px;
+	box-sizing: border-box;
+	color: #000;
+	background:#f5f0f0;
+	border: none;
+	outline: none;
+	border-radius: 4px;
+	color: #b5a1a1;
+}
+
+ #addr-text {
+	margin-left: 3%;
+	margin-top: 0;
+	padding: 0;
 }
 
 .front label{
