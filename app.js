@@ -23,15 +23,17 @@ function navRender(page, req, res){
   if(req.isAuthenticated()){
     res.render(page, {
       loginStatus: loginStatus,
+      profileName: req.user.name,
       profilePic: req.user.photourl,
-      profileName: req.user.name
+      user: req.user
     })
   }
   else{
     res.render(page, {
       loginStatus: loginStatus,
+      profileName: 0,
       profilePic: 0,
-      profileName: 0
+      user: 0
     });
   }
 }
@@ -153,6 +155,7 @@ app.post("/signup", function (req, res) {
       res.redirect("/signup");
     } else {
       passport.authenticate("local")(req, res, function () {
+        loginStatus = 1;
         res.redirect("/selectcity")
       })
     }
@@ -172,6 +175,7 @@ app.post("/login", function (req, res) {
     if (err) { console.log(err) }
     else {
       passport.authenticate("local")(req, res, function () {
+        loginStatus = 1;
         res.redirect("/selectcity")
       })
     }
@@ -248,7 +252,24 @@ app.get("/restaurantpage/:name",function(req,res){
 })
 
 app.get("/profile", function(req, res){
+  navRender("user_profile", req, res);
+})
 
+app.get("/editprofile", function(req, res){
+  navRender("edit_profile", req, res);
+})
+
+app.get("/resetpassword", function(req, res){
+  if (req.user.googleId === undefined){
+    navRender("reset_password", req, res);
+  }
+  else{
+    res.redirect("/profile");
+  }
+})
+
+app.get("/bookings", function(req, res){
+  navRender("bookings", req, res);
 })
 
 app.post("/payment", function(req, res){
@@ -256,6 +277,12 @@ app.post("/payment", function(req, res){
   let resDate = req.body.bookingDate;
   let time = req.body.time;
 });
+
+app.get("/signout", function(req, res){
+  req.logout();
+  loginStatus = 0;
+  res.redirect("/");
+})
 
 app.listen(3000, function () {
   console.log("Server running on Port 3000");
