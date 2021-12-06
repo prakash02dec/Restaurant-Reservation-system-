@@ -13,7 +13,7 @@ const _ = require("lodash")
 const app = express();
 
 var loginStatus = 0;
-app.use(express.static("public"));
+app.use(express.static(__dirname + '/public'));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({
   extended: true
@@ -64,8 +64,11 @@ const cityRestuarantSchema = new mongoose.Schema({
   ratings : String,
   phone : String,
   costfor : String,
-  openfrom : String,
-  userReview : [String]
+  openFrom : String,
+  openTill : String,
+  description: String,
+  menuImage: String,
+  carouselImages: [String]
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -160,7 +163,7 @@ app.get("/selectcity", function (req, res) {
 })
 
 app.post("/selectcity", function (req, res) {
-  res.redirect("/restaurantcity/"+req.body.city);
+  res.redirect("/restaurantcity/" + req.body.city);
 })
 
 app.get("/restaurantcity/:city", function(req, res){
@@ -175,6 +178,7 @@ app.get("/restaurantcity/:city", function(req, res){
           loginStatus: loginStatus,
           profilePic: req.user.photourl,
           profileName: req.user.name,
+          city: cityName,
           restaurants : foundRestaurants
         });
       }
@@ -183,6 +187,7 @@ app.get("/restaurantcity/:city", function(req, res){
           loginStatus: loginStatus,
           profilePic: 0,
           profileName: 0,
+          city: cityName,
           restaurants : foundRestaurants
         });
       }
@@ -190,9 +195,15 @@ app.get("/restaurantcity/:city", function(req, res){
   })
 })
 
+var savedres;
 app.get("/restaurantpage/:name",function(req,res){
-    const restaurantName = req.params.name
-    cityRestuarant.findOne({name : restaurantName},function(err, foundRestaurant){
+    const restaurantName = req.params.name;
+
+    cityRestuarant.findOne({name : restaurantName}, function(err, foundRestaurant){
+      if (foundRestaurant != null){
+        savedres = foundRestaurant;
+      }
+
       if(err){
         console(err);
       }else{
@@ -201,19 +212,25 @@ app.get("/restaurantpage/:name",function(req,res){
             loginStatus: loginStatus,
             profilePic: req.user.photourl,
             profileName: req.user.name,
-            restaurant : foundRestaurant
-          })
+            restaurant : savedres
+          });
         }
         else{
           res.render("restaurantpage", {
             loginStatus: loginStatus,
             profilePic: 0,
             profileName: 0,
-            restaurant : foundRestaurant
+            restaurant : savedres
           });
         }
       }
     })
+})
+
+app.post("/payment", function(req, res){
+  let guests = req.body.guests;
+  let resDate = req.body.bookingDate;
+  let time = req.body.time;
 })
 
 app.listen(3000, function () {
