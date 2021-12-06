@@ -1,0 +1,11 @@
+.profile-header
+{
+  min-height: 670px;
+  background-image: url(https://cdn.wallpapersafari.com/77/41/sL0htf.jpg);
+  background-size: cover;
+  background-position: center top;
+}
+
+.profileText{
+  margin-left: 100px;
+}
