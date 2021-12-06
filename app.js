@@ -106,14 +106,34 @@ app.get("/", function (req, res) {
   navRender("home", req, res);
 });
 
+app.get("/additional", function(req, res){
+  navRender("additional", req, res);
+})
+
+app.post("/additional", function(req, res){
+  User.findOneAndUpdate({googleId : req.user.googleId}, {phone : req.body.phoneNo, address : req.body.addressTextarea}, {upsert: true}, function(err){
+    if (err){
+      console.log(err);
+    }
+    else{
+      res.redirect("/selectcity");
+    }
+  });
+})
+
 app.get('/auth/google', passport.authenticate('google', { scope: ["email", "profile"] }));
 
 app.get('/auth/google/resdine',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function (req, res) {
-    // Successful authentication, redirect home.
     loginStatus = 1;
-    res.redirect("/selectcity");
+
+    if(req.user.phone === undefined){
+      res.redirect("/additional");
+    }
+    else{
+      res.redirect("/selectcity");
+    }
   });
 
 app.get("/signup", function (req, res) {
@@ -227,11 +247,15 @@ app.get("/restaurantpage/:name",function(req,res){
     })
 })
 
+app.get("/profile", function(req, res){
+
+})
+
 app.post("/payment", function(req, res){
   let guests = req.body.guests;
   let resDate = req.body.bookingDate;
   let time = req.body.time;
-})
+});
 
 app.listen(3000, function () {
   console.log("Server running on Port 3000");
