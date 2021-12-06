@@ -147,6 +147,7 @@ a {
   width: 50px;
   margin-top: 5px;
   border-radius: 50%;
+  border: solid 2px;
 }
 
 .profile-name{
