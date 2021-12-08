@@ -109,13 +109,13 @@
           <h3 class="make-res">Make a Reservation</h3>
           <hr class="res-hr">
 
-          <form action="/payment" method="post">
+          <form action="/payment/<%= restaurant.name %>" method="post">
             <div class="guest-container">
               <div class="book-a-table-icon">
                 <i class="fas fa-user-plus fa-2x"></i>
               </div>
               <div class="book-a-table-selection">
-                <select class="custom-select custom-select-guest custom-select-md mb-3 col-9" style="border:2px solid grey;" name="guests">
+                <select class="custom-select custom-select-guest custom-select-md mb-3 col-9" style="border:2px solid grey;" name="guests" required>
                   <option selected>Select number of guests</option>
                   <option value="1">1 Guest</option>
                   <option value="2">2 Guests</option>
@@ -132,13 +132,13 @@
                 <i class="fas fa-table fa-2x"></i>
               </div>
               <div class="book-a-table-selection">
-                <input type="date" id="date-of-booking" name="bookingDate" style="border:2px solid grey;">
+                <input type="date" id="date-of-booking" name="bookingDate" style="border:2px solid grey;" required>
               </div>
             </div>
             <div class="time-container">
 
               <i class="fas fa-clock fa-2x book-a-table-icon"></i>
-              <select class="custom-select custom-select-md mb-3 col-9" style="border:2px solid grey;" name="time">
+              <select class="custom-select custom-select-md mb-3 col-9" style="border:2px solid grey;" name="time" required>
                 <option selected>Select time</option>
                 <option value="11am">11 A.M</option>
                 <option value="12pm">12 P.M</option>
