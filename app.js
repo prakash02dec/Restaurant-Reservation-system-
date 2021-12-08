@@ -46,8 +46,16 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session())
-
 mongoose.connect("mongodb://127.0.0.1:27017/resdineDB");
+
+const orderSchema = new mongoose.Schema({
+  resName: String,
+  guests: Number,
+  resTime: String,
+  resDate: Date
+})
+const Order = mongoose.model("Order", orderSchema);
+
 const userSchema = new mongoose.Schema({
   name: String,
   email: String,
@@ -56,8 +64,9 @@ const userSchema = new mongoose.Schema({
   googleId: String,
   phone: String,
   gender: String,
-  photourl: String
-});
+  photourl: String,
+  orders: [orderSchema]
+}, {strict: false});
 
 const cityRestuarantSchema = new mongoose.Schema({
   city : String,
@@ -272,10 +281,27 @@ app.get("/bookings", function(req, res){
   navRender("bookings", req, res);
 })
 
-app.post("/payment", function(req, res){
-  let guests = req.body.guests;
-  let resDate = req.body.bookingDate;
-  let time = req.body.time;
+app.post("/payment/:resName", function(req, res){
+  if(req.isAuthenticated()){
+    let guests = req.body.guests;
+    let resDate = req.body.bookingDate;
+    let resTime = req.body.time;
+    let resName = req.params.resName;
+
+    let newOrder = new Order({
+      guests : guests,
+      resDate : resDate,
+      resName : resName,
+      resTime : resTime
+    });
+
+    req.user.orders.push(newOrder);
+    req.user.save();
+  }
+  else{
+    res.redirect("/signup");
+  }
+
 });
 
 app.get("/signout", function(req, res){
