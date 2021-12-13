@@ -157,7 +157,8 @@ app.post("/signup", function (req, res) {
     name: req.body.name,
     address: req.body.address,
     phone: req.body.number,
-    gender: req.body.gender
+    gender: req.body.gender,
+    photourl : "images/profile-default.jpg"
   }, req.body.password, function (err, user) {
     if (err) {
       console.log(err);
@@ -201,7 +202,6 @@ app.post("/selectcity", function (req, res) {
 
 app.get("/restaurantcity/:city", function(req, res){
   const cityName = _.startCase(_.toLower(req.params.city));
-
   cityRestuarant.find({city : cityName},function(err, foundRestaurants){
     if(err){
       console(err);
@@ -228,11 +228,12 @@ app.get("/restaurantcity/:city", function(req, res){
   })
 })
 
-var savedres;
+
 app.get("/restaurantpage/:name",function(req,res){
     const restaurantName = req.params.name;
 
     cityRestuarant.findOne({name : restaurantName}, function(err, foundRestaurant){
+      let savedres;
       if (foundRestaurant != null){
         savedres = foundRestaurant;
       }

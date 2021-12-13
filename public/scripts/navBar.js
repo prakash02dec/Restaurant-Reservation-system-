@@ -1,4 +1,4 @@
-var loginStatus = loginStat;
+let loginStatus = loginStat;
 
 if (loginStatus === 1){
   $(".btn-sign").hide();
