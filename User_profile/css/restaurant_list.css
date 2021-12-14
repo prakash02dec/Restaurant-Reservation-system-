@@ -1,0 +1,109 @@
+.main{
+background-image:url(photo13.jpg);
+  background-repeat:no repeat;
+  background-size:cover;
+}
+.restaurant-title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  line-height: 88px;
+  font-size: 5rem;
+  text-align: center;
+  padding: 45px;;
+  color: rgb(197, 149, 110);
+}
+
+.icon-rating{
+  color:#b5e606;
+}
+.book-button{
+  background-color: #f55253;
+  float:right;
+  width: fit-content;
+
+}
+.book-button:hover{
+  background-color: #d10808;
+}
+
+.restaurant-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(290,1fr));
+    grid-gap: 7%;
+    padding: 0 0 6rem;
+    margin:auto;
+    
+}
+.restaurant-name{
+  padding-bottom: 8px;
+}
+.restaurant-address{
+  color:grey;
+  font-size:20px;
+}
+
+.grid >article .text {
+
+    text-align: left;
+    font-size: 18px;
+    list-style: inside;
+    padding: 1rem 2rem 2rem;
+    
+    border-radius: 0.5rem;
+}
+.grid{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 3rem;
+    text-align: center;
+
+    
+}
+.grid > article{
+    background: #F7F7F7;
+    border:none;
+    transition: transform .3s;
+    position:relative;
+    margin: auto;  
+    
+}
+.grid > article:hover{
+    transform: translateY(5px);
+    box-shadow: 2px 2px 26px 0px rgba(0,0,0,0.3);
+}
+.grid > article img{
+    width: 20rem;
+    /* height: 1rem; */
+    margin: auto;
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.5) ;
+}
+.left{
+  float: left;
+}
+.right{
+  float: right;
+}
+
+@media(min-width: 760px){
+
+  .grid > article{  
+      margin: auto;
+      padding:1rem ;
+      width : 80%;
+  }
+  .grid > article img{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+}
+ 
+ @media (max-width: 768px){
+    .grid > article{
+        text-align: center;
+    }
+    .grid > article img{
+      float: none;
+  }
+}
