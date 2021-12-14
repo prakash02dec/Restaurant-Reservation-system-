@@ -145,18 +145,22 @@ a {
 .profile-pic{
   height: 50px;
   width: 50px;
-  margin : auto ;
+  margin : auto;
   border-radius: 50%;
   border: solid 1px;
 }
 
 .profile-name{
   color: black;
-  margin-top: 5px;
+  margin: auto;
   margin-left: 10px;
-  margin-right: 0;
-  font-size: 1.2rem;
+  text-align: center;
+  font-size: 1.6rem;
   font-weight: 500;
+}
+
+.profile-name:hover{
+  color: #fe6a6a;
 }
 /*-----------------------
     Navbar Ends
@@ -578,6 +582,10 @@ footer {
     font-size: 2rem;
     padding: 5px 0 ;
     margin: 0;
+  }
+
+  .profile-name{
+    margin-left: 0;
   }
 
   .catch-para {
