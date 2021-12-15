@@ -128,7 +128,7 @@
                       <div class="col col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12">
                         <div class="edit-details-btn">
                           <button type="submit" class="btn  profile-btn">Update</button>
-                          <button type="submit" class="btn btn-dark back-btn">Back</button>
+                          <button type="button" class="btn btn-dark back-btn">Back</button>
                         </div>
                         <h6 id="photo-upload">
                           <%= updateStatusUser %>
@@ -192,7 +192,7 @@
 
                 <div class="tab-pane fade" id="booking" role="tabpanel" aria-labelledby="booking-tab">
                   <main class="grid-booking">
-                    <%if( orders[0] !== undefined ){ %>
+                    <%if( orders.len !== 0 ){ %>
                       <% orders.forEach(function (order) { %>
                         <article>
                           <div class="previous-restaurants-wrap">

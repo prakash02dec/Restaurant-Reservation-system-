@@ -36,7 +36,6 @@ const orderSchema = new mongoose.Schema({
   userID: String,
   price: Number
 })
-const Order = mongoose.model("Order", orderSchema);
 
 const userSchema = new mongoose.Schema({
   username : String,
@@ -69,6 +68,7 @@ userSchema.plugin(findOrCreate);
 
 const User = mongoose.model("User", userSchema);
 const cityRestuarant = mongoose.model("cityRestuarant", cityRestuarantSchema);
+const Order = mongoose.model("Order", orderSchema);
 
 passport.use(User.createStrategy());
 
@@ -283,15 +283,17 @@ app.post("/editUser", function(req, res){
       req.user.phone = req.body.phone;
       req.user.email = req.body.email;
       req.user.address = req.body.address;
-
+      Order.find({userId: req.user._id.toString()}, function(err, order){
       res.render("user_profile", {
         loginStatus: 1,
         profileName: req.user.name,
         profilePic: req.user.photourl,
+        orders: order,
         user: req.user,
         updateStatusUser : "Updated Sucessfully",
         updateStatusPassword : ""
       })
+    })
   }
   else{
     res.redirect("/login")
@@ -303,24 +305,30 @@ app.post("/editPassword", function(req, res){
   if(req.isAuthenticated()){
     if(req.user.password === undefined || req.user.password === req.body.old-password  ){
       req.user.password = req.body.new-password;
-      res.render("user_profile", {
-        loginStatus: 1,
-        profileName: req.user.name,
-        profilePic: req.user.photourl,
-        user: req.user,
+      Order.find({userId: req.user._id.toString()}, function(err, order){
+        res.render("user_profile", {
+          loginStatus: 1,
+          profileName: req.user.name,
+          profilePic: req.user.photourl,
+          orders: order,
+          user: req.user,
         updateStatusUser : "",
         updateStatusPassword : "Updated Sucessfully"
       })
+    })
     }
     else{
-      res.render("user_profile", {
-        loginStatus: 1,
-        profileName: req.user.name,
-        profilePic: req.user.photourl,
-        user: req.user,
+      Order.find({userId: req.user._id.toString()}, function(err, order){
+        res.render("user_profile", {
+          loginStatus: 1,
+          profileName: req.user.name,
+          profilePic: req.user.photourl,
+          orders: order,
+          user: req.user,
         updateStatusUser : "",
         updateStatusPassword : "Old Password invalid"
       })
+    })
     }
   }
   else{
@@ -328,16 +336,15 @@ app.post("/editPassword", function(req, res){
   }
 })
 
-var newOrder = new Order();
+
 app.post("/revieworder/:resId", function(req, res){
+  let newOrder = new Order();
   if(req.isAuthenticated()){
     let guests = req.body.guests;
     let resDate = req.body.bookingDate;
     let resTime = req.body.time;
     let resId = req.params.resId;
     let price = guests * 50;
-
-
 
     cityRestuarant.findOne({_id: resId}, function(err, foundRestaurant){
       newOrder = new Order({
@@ -362,7 +369,7 @@ app.post("/revieworder/:resId", function(req, res){
         price : price
       });
     });
-
+    newOrder.save(); //Order saved to database
   }
   else{
     res.redirect("/signup");
@@ -370,7 +377,7 @@ app.post("/revieworder/:resId", function(req, res){
 });
 
 app.post("/payment", function(req, res){
-  newOrder.save(); //Order saved to database
+  
   res.redirect("/");
 })
 
