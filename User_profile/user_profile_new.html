@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ResDine</title>
+  <script src="https://kit.fontawesome.com/1cec56f29b.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/signup.css">
+  <link rel="stylesheet" href="css/bootstrap-social.css">
+  <link rel="stylesheet" href="css/HomePagenew.css">
+  <link rel="stylesheet" href="css/restaurant_list.css">
+  <link rel="stylesheet" href="css/restaurantpage.css">
+  <link rel="stylesheet" href="css/user_profile.css">
+  <link rel="stylesheet" href="css/edit_profile.css">
+  <link rel="stylesheet" href="css/reset_password.css">
+  <link rel="stylesheet" href="css/bookings.css">
+
+</head>
+
+<body>
+  <!-- Navbar start -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light restaurant_navbar">
+    <div class="container ">
+      <a class="navbar-brand" href="/">ResDine</a>
+      <button class="navbar-toggler _toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav nav mb-2 mb-lg-0 restaurant_list">
+          <li class="nav-item restaurant_list_item">
+            <a class="nav-link restaurant_list_link" id="home-btn" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item restaurant_list_item">
+            <a class="nav-link restaurant_list_link" href="/#feature" tabindex="-1" aria-disabled="true">Features</a>
+          </li>
+          </li>
+          <li class="nav-item restaurant_list_item">
+            <a class="nav-link restaurant_list_link" href="#footer" tabindex="-1" aria-disabled="true">Contact Us</a>
+          </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right  ms-auto">
+          <li class="nav-item btn-sign">
+            <a href="/login"><button class="btn btn-dark btn-lg">Sign in</button></a>
+          </li>
+          <li class="nav-item btn-sign">
+            <a href="/signup"><button class="btn btn-lg btn-outline-dark">Sign up</button></a>
+          </li>
+          <li>
+            <img class="profile-pic" src="<%= profilePic %>" />
+          </li>
+          <li>
+            <a href="/profile">
+              <p class="profile-name"><%= profileName %></p>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar Ends -->
+
+
+  <div class="main-content">
+
+    <section class="profile_options_wrapper">
+      <div class="profile_options_wrap">
+        <div class="container">
+          <h1 id="user-greeting">Hi, <%= user.name %></h1>
+          <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12">
+              <div class="profile_options_heading">
+                <div class="text-center">
+                  <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                  <h6 id="photo-upload">Upload a different photo...</h6>
+                  <div class="profile-image">
+                    <input type="file" class="profile-image-file">
+                  </div>
+                  <div class="profile_options_content_txt">
+                    <a href="/signout" class="btn btn-info profile-btn ">Log Out</a>
+                  </div>
+                </div>
+                </hr><br>
+              </div>
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-8 col-sm-12 col-12">
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">Profile</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="edit-password-tab" data-bs-toggle="tab" data-bs-target="#edit-password" type="button" role="tab" aria-controls="edit-password" aria-selected="false"> Edit Password</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="booking-tab" data-bs-toggle="tab" data-bs-target="#booking" type="button" role="tab" aria-controls="booking" aria-selected="false">Bookings</button>
+                </li>
+              </ul>
+              <br>
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+                  <form class="form" action="##" method="post" id="registrationForm">
+                    <div class="row">
+                      <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                          <label for="full_name">
+                            <h4 class="user-profile-form-detail">Full name</h4>
+                          </label>
+                          <input type="text" class="form-control" name="first_name" id="full_name" placeholder="full name" title="enter your full name.">
+                        </div>
+                      </div>
+
+                      <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                          <label for="phone">
+                            <h4 class="user-profile-form-detail">Phone</h4>
+                          </label>
+                          <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
+                        </div>
+                      </div>
+                      <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                          <label for="phone">
+                            <h4 class="user-profile-form-detail">Phone number</h4>
+                          </label>
+                          <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone number" title="enter your phone number if any.">
+                        </div>
+                      </div>
+                      <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                          <label for="email">
+                            <h4 class="user-profile-form-detail">Email</h4>
+                          </label>
+                          <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
+                        </div>
+                      </div>
+                      <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                          <label for="email">
+                            <h4 class="user-profile-form-detail">Address</h4>
+                          </label>
+                          <input type="email" class="form-control" id="location" placeholder="home address" title="enter a location">
+                        </div>
+                      </div>
+                      <div class="col col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12">
+                        <div class="edit-details-btn">
+                          <a href="#" class="btn btn-info profile-btn">Edit Details</a>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+
+                </div>
+                <div class="tab-pane fade" id="edit-password" role="tabpanel" aria-labelledby="edit-password-tab">
+                  <form class="form" action="##" method="post" id="passwordChangeForm">
+                    <!-- <div class="row"> -->
+                    <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                      <div class="form-group">
+                        <label for="password">
+                          <h4 class="user-profile-form-detail"> Old Password</h4>
+                        </label>
+                        <input type="password" class="form-control" name="old-password" id="old-password" placeholder="Old Password" title="enter your old password.">
+                      </div>
+                    </div>
+                    <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                      <div class="form-group">
+                        <label for="password2">
+                          <h4 class="user-profile-form-detail">New Password</h4>
+                        </label>
+                        <input type="password" class="form-control" name="new-password" id="new-password" placeholder="New Password" title="enter the new password.">
+                      </div>
+                    </div>
+                    <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                      <div class="form-group">
+                        <label for="password2">
+                          <h4 class="user-profile-form-detail">Confirm New Password</h4>
+                        </label>
+                        <input type="password" class="form-control" name="new-password2" id="new-password2" placeholder="Re-enter new password" title="enter new password once again.">
+                      </div>
+                    </div>
+                    <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                      <div class="edit-details-btn">
+                        <a href="#" class="btn btn-info profile-btn">Change Password</a>
+                      </div>
+                    </div>
+                    <!-- </div> -->
+                  </form>
+                </div>
+                <div class="tab-pane fade" id="booking" role="tabpanel" aria-labelledby="booking-tab">
+                  <main class="grid-booking">
+
+                    <article>
+                      <div class="previous-restaurants-wrap">
+                        <div class="row">
+                          <div class="col col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                            <img class="previous-restaurant-image" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZmluZSUyMGRpbmluZ3xlbnwwfHwwfHw%3D&w=1000&q=80" alt="img">
+                          </div>
+                          <div class="col col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8">
+                            <h3 class="restaurant-booking-name">Restaurant Name: Bikanerwala, New Delhi</h3>
+                            <div class="row">
+                              <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="restaurant-booking-details">Date of Booking: 14/12/2021</h6>
+                              </div>
+                              <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="restaurant-booking-details">Reservation Time: 9 p.m.</h6>
+                              </div>
+                              <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="restaurant-booking-details">Number of people: 4</h6>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </article>
+                    <article>
+                      <div class="previous-restaurants-wrap">
+                        <div class="row">
+                          <div class="col col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                            <img class="previous-restaurant-image" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZmluZSUyMGRpbmluZ3xlbnwwfHwwfHw%3D&w=1000&q=80" alt="img">
+                          </div>
+                          <div class="col col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8">
+                            <h3 class="restaurant-booking-name">Restaurant Name: Connaught Palace, New Delhi</h3>
+                            <div class="row">
+                              <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="restaurant-booking-details">Date of Booking: 11/10/2021</h6>
+                              </div>
+                              <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="restaurant-booking-details">Reservation Time: 8 p.m.</h6>
+                              </div>
+                              <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="restaurant-booking-details">Number of people: 2</h6>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </article>
+                  </main>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <!-- Footer Section -->
+  <footer id="footer">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+      <!-- Section: Social media -->
+      <section class="mb-4">
+        <!-- Facebook -->
+        <a class="btn btn-outline-light" href="https://www.facebook.com" role="button">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+
+        <!-- Twitter -->
+        <a class="btn btn-outline-light" href="https://www.twitter.com" role="button">
+          <i class="fab fa-twitter"></i>
+        </a>
+
+        <!-- Google -->
+        <a class="btn btn-outline-light" href="https://www.google.com" role="button">
+          <i class="fab fa-google"></i>
+        </a>
+
+        <!-- Instagram -->
+        <a class="btn btn-outline-light" href="https://www.instagram.com" role="button">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3">
+      © 2021 Copyright: ResDine
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer Section ends -->
+
+
+</body>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/scripts/homeColor.js"></script>
+    <script type="text/javascript">
+      var loginStat = <%= loginStatus %>;
+    </script>
+    <script type="text/javascript" src="/scripts/navBar.js"></script> -->
+
+</html>
