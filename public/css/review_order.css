@@ -115,6 +115,7 @@ Book button
   width: 70%;
   margin-bottom: 18%;
 }
+}
 @media only screen and (max-width: 650px) {
 .check-details{
   width: 90%;

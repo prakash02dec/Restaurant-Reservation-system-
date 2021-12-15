@@ -38,7 +38,7 @@ const orderSchema = new mongoose.Schema({
 })
 
 const userSchema = new mongoose.Schema({
-  username : String,
+  username: String,
   name: String,
   email: String,
   address: String,
@@ -50,14 +50,14 @@ const userSchema = new mongoose.Schema({
 });
 
 const cityRestuarantSchema = new mongoose.Schema({
-  city : String,
+  city: String,
   name: String,
-  address :String,
-  ratings : String,
-  phone : String,
-  costfor : String,
-  openFrom : String,
-  openTill : String,
+  address: String,
+  ratings: String,
+  phone: String,
+  costfor: String,
+  openFrom: String,
+  openTill: String,
   description: String,
   menuImage: String,
   carouselImages: [String]
@@ -86,17 +86,17 @@ passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: "http://localhost:3000/auth/google/resdine",
-  },
+},
   function (accessToken, refreshToken, profile, cb) {
     // console.log(profile)
-    User.findOrCreate({ googleId: profile.id, email: profile.emails[0].value, username: profile.displayName , name: profile.displayName, photourl: profile.photos[0].value }, function (err, user) {
+    User.findOrCreate({ googleId: profile.id, email: profile.emails[0].value, username: profile.displayName, name: profile.displayName, photourl: profile.photos[0].value }, function (err, user) {
       return cb(err, user);
     });
   }
 ));
 
-function navRender(page, req, res){
-  if(req.isAuthenticated()){
+function navRender(page, req, res) {
+  if (req.isAuthenticated()) {
     res.render(page, {
       loginStatus: 1,
       profileName: req.user.name,
@@ -104,7 +104,7 @@ function navRender(page, req, res){
       user: req.user
     })
   }
-  else{
+  else {
     res.render(page, {
       loginStatus: 0,
       profileName: 0,
@@ -114,20 +114,21 @@ function navRender(page, req, res){
   }
 }
 
+
 app.get("/", function (req, res) {
   navRender("home", req, res);
 });
 
-app.get("/additional", function(req, res){
+app.get("/additional", function (req, res) {
   navRender("additional", req, res);
 })
 
-app.post("/additional", function(req, res){
-  User.findOneAndUpdate({googleId : req.user.googleId}, {phone : req.body.phoneNo, address : req.body.addressTextarea}, {upsert: true}, function(err){
-    if (err){
+app.post("/additional", function (req, res) {
+  User.findOneAndUpdate({ googleId: req.user.googleId }, { phone: req.body.phoneNo, address: req.body.addressTextarea }, { upsert: true }, function (err) {
+    if (err) {
       console.log(err);
     }
-    else{
+    else {
       res.redirect("/selectcity");
     }
   });
@@ -138,10 +139,10 @@ app.get('/auth/google', passport.authenticate('google', { scope: ["email", "prof
 app.get('/auth/google/resdine',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function (req, res) {
-    if(req.user.phone === undefined){
+    if (req.user.phone === undefined) {
       res.redirect("/additional");
     }
-    else{
+    else {
       res.redirect("/selectcity");
     }
   });
@@ -157,7 +158,7 @@ app.post("/signup", function (req, res) {
     address: req.body.address,
     phone: req.body.number,
     gender: req.body.gender,
-    photourl : "images/profile-default.jpg"
+    photourl: "images/profile-default.jpg"
   }, req.body.password, function (err, user) {
     if (err) {
       console.log(err);
@@ -197,28 +198,28 @@ app.post("/selectcity", function (req, res) {
   res.redirect("/restaurantcity/" + req.body.city);
 })
 
-app.get("/restaurantcity/:city", function(req, res){
+app.get("/restaurantcity/:city", function (req, res) {
   const cityName = _.startCase(_.toLower(req.params.city));
-  cityRestuarant.find({city : cityName},function(err, foundRestaurants){
-    if(err){
+  cityRestuarant.find({ city: cityName }, function (err, foundRestaurants) {
+    if (err) {
       console(err);
-    }else{
-      if(req.isAuthenticated()){
+    } else {
+      if (req.isAuthenticated()) {
         res.render("restaurantcity", {
           loginStatus: 1,
           profilePic: req.user.photourl,
           profileName: req.user.name,
           city: cityName,
-          restaurants : foundRestaurants
+          restaurants: foundRestaurants
         });
       }
-      else{
+      else {
         res.render("restaurantcity", {
           loginStatus: 0,
           profilePic: 0,
           profileName: 0,
           city: cityName,
-          restaurants : foundRestaurants
+          restaurants: foundRestaurants
         });
       }
     }
@@ -226,135 +227,135 @@ app.get("/restaurantcity/:city", function(req, res){
 })
 
 
-app.get("/restaurantpage/:name",function(req,res){
-    const restaurantName = req.params.name;
+app.get("/restaurantpage/:name", function (req, res) {
+  const restaurantName = req.params.name;
 
-    cityRestuarant.findOne({name : restaurantName}, function(err, foundRestaurant){
-      let savedres;
-      if (foundRestaurant != null){
-        savedres = foundRestaurant;
-      }
+  cityRestuarant.findOne({ name: restaurantName }, function (err, foundRestaurant) {
+    let savedres;
+    if (foundRestaurant != null) {
+      savedres = foundRestaurant;
+    }
 
-      if(err){
-        console(err);
-      }else{
-        if(req.isAuthenticated()){
-          res.render("restaurantpage", {
-            loginStatus: 1,
-            profilePic: req.user.photourl,
-            profileName: req.user.name,
-            restaurant : savedres
-          });
-        }
-        else{
-          res.render("restaurantpage", {
-            loginStatus: 0,
-            profilePic: 0,
-            profileName: 0,
-            restaurant : savedres
-          });
-        }
+    if (err) {
+      console(err);
+    } else {
+      if (req.isAuthenticated()) {
+        res.render("restaurantpage", {
+          loginStatus: 1,
+          profilePic: req.user.photourl,
+          profileName: req.user.name,
+          restaurant: savedres
+        });
       }
-    })
+      else {
+        res.render("restaurantpage", {
+          loginStatus: 0,
+          profilePic: 0,
+          profileName: 0,
+          restaurant: savedres
+        });
+      }
+    }
+  })
 })
 
-app.get("/profile", function(req, res){
-  if(req.isAuthenticated()){
-    Order.find({userId: req.user._id.toString()}, function(err, order){
+app.get("/profile", function (req, res) {
+  if (req.isAuthenticated()) {
+    Order.find({ userId: req.user._id.toString() }, function (err, order) {
       res.render("user_profile", {
         loginStatus: 1,
         profileName: req.user.name,
         profilePic: req.user.photourl,
         user: req.user,
         orders: order,
-        updateStatusUser : "",
-        updateStatusPassword : ""
+        updateStatusUser: "",
+        updateStatusPassword: ""
       })
     })
   }
-  else{
+  else {
     res.redirect("/login")
   }
 })
 
-app.post("/editUser", function(req, res){
-  if(req.isAuthenticated()){
-      req.user.name = req.body.name;
-      req.user.phone = req.body.phone;
-      req.user.email = req.body.email;
-      req.user.address = req.body.address;
-      Order.find({userId: req.user._id.toString()}, function(err, order){
+app.post("/editUser", function (req, res) {
+  if (req.isAuthenticated()) {
+    req.user.name = req.body.name;
+    req.user.phone = req.body.phone;
+    req.user.email = req.body.email;
+    req.user.address = req.body.address;
+    Order.find({ userId: req.user._id.toString() }, function (err, order) {
       res.render("user_profile", {
         loginStatus: 1,
         profileName: req.user.name,
         profilePic: req.user.photourl,
         orders: order,
         user: req.user,
-        updateStatusUser : "Updated Sucessfully",
-        updateStatusPassword : ""
+        updateStatusUser: "Updated Sucessfully",
+        updateStatusPassword: ""
       })
     })
   }
-  else{
+  else {
     res.redirect("/login")
   }
 })
 
-app.post("/editPassword", function(req, res){
+app.post("/editPassword", function (req, res) {
 
-  if(req.isAuthenticated()){
-    if(req.user.password === undefined || req.user.password === req.body.old-password  ){
-      req.user.password = req.body.new-password;
-      Order.find({userId: req.user._id.toString()}, function(err, order){
+  if (req.isAuthenticated()) {
+    if (req.user.password === undefined || req.user.password === req.body.old - password) {
+      req.user.password = req.body.new - password;
+      Order.find({ userId: req.user._id.toString() }, function (err, order) {
         res.render("user_profile", {
           loginStatus: 1,
           profileName: req.user.name,
           profilePic: req.user.photourl,
           orders: order,
           user: req.user,
-        updateStatusUser : "",
-        updateStatusPassword : "Updated Sucessfully"
+          updateStatusUser: "",
+          updateStatusPassword: "Updated Sucessfully"
+        })
       })
-    })
     }
-    else{
-      Order.find({userId: req.user._id.toString()}, function(err, order){
+    else {
+      Order.find({ userId: req.user._id.toString() }, function (err, order) {
         res.render("user_profile", {
           loginStatus: 1,
           profileName: req.user.name,
           profilePic: req.user.photourl,
           orders: order,
           user: req.user,
-        updateStatusUser : "",
-        updateStatusPassword : "Old Password invalid"
+          updateStatusUser: "",
+          updateStatusPassword: "Old Password invalid"
+        })
       })
-    })
     }
   }
-  else{
+  else {
     res.redirect("/login")
   }
 })
 
+let newOrder = new Order();
+app.post("/revieworder/:resId", function (req, res) {
 
-app.post("/revieworder/:resId", function(req, res){
-  let newOrder = new Order();
-  if(req.isAuthenticated()){
+  if (req.isAuthenticated()) {
     let guests = req.body.guests;
     let resDate = req.body.bookingDate;
     let resTime = req.body.time;
     let resId = req.params.resId;
     let price = guests * 50;
 
-    cityRestuarant.findOne({_id: resId}, function(err, foundRestaurant){
+    cityRestuarant.findOne({ _id: resId }, function (err, foundRestaurant) {
       newOrder = new Order({
-        guests : guests,
-        resDate : resDate,
-        resTime : resTime,
-        resName : foundRestaurant.name,
-        userID : req.user._id,
-        resId : resId,
-        price : price
+        guests: guests,
+        resDate: resDate,
+        resTime: resTime,
+        resName: foundRestaurant.name,
+        userID: req.user._id,
+        resId: resId,
+        price: price
       });
 
       res.render("review_order", {
@@ -363,25 +364,25 @@ app.post("/revieworder/:resId", function(req, res){
         profilePic: req.user.photourl,
         user: req.user,
         restaurant: foundRestaurant,
-        guests : guests,
-        resDate : resDate,
-        resTime : resTime,
-        price : price
+        guests: guests,
+        resDate: resDate,
+        resTime: resTime,
+        price: price
       });
     });
-    newOrder.save(); //Order saved to database
+
   }
-  else{
+  else {
     res.redirect("/signup");
   }
 });
 
-app.post("/payment", function(req, res){
-  
+app.post("/payment", function (req, res) {
+  newOrder.save(); //Order saved to database
   res.redirect("/");
 })
 
-app.get("/logout", function(req, res){
+app.get("/logout", function (req, res) {
   req.logout();
   res.redirect("/");
 });

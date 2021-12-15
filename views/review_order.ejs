@@ -56,7 +56,8 @@
           <div class="row deal-details">
             <h7 style="color:white;" class="bg-success deal-offer"><span class="rupee-symbol">₹ </span> <%= price %> </h7>
           </div>
-          <form action="/payment" method="post">
+          <form action="/paynow" method="post">
+            <input type="hidden" name="price" value="<%= price %>">
             <div class="row">
               <button type="submit" class="btn button-submit btn-md col-sm-11 col-11">Proceed to Payment</button>
             </div>
