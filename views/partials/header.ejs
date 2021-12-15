@@ -22,9 +22,12 @@
     <link rel="stylesheet" href="/css/login.css">
     <link rel="stylesheet" href="/css/signup.css">
     <link rel="stylesheet" href="/css/bootstrap-social.css">
-    <link rel="stylesheet" href="/css/HomePagenew.css">
+    <link rel="stylesheet" href="/css/selectcity.css">
     <link rel="stylesheet" href="/css/restaurant_list.css">
     <link rel="stylesheet" href="/css/restaurantpage.css">
+    <link rel="stylesheet" href="/css/user_profile.css">
+    <link rel="stylesheet" href="/css/review_order.css">    
+
 </head>
 
 <body>
@@ -46,21 +49,33 @@
                     <a class="nav-link restaurant_list_link" href="/#feature" tabindex="-1"
                         aria-disabled="true">Features</a>
                 </li>
+              </li>
+              <li class="nav-item restaurant_list_item">
+                  <a class="nav-link restaurant_list_link" href="#footer" tabindex="-1"
+                      aria-disabled="true">Contact Us</a>
+              </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right  ms-auto">
-              <li class="nav-item btn-sign">
-                <a href="/login"><button class="btn btn-dark btn-lg">Sign in</button></a>
-              </li>
-              <li class="nav-item btn-sign">
-                <a href="/signup"><button class="btn btn-lg btn-outline-dark">Sign up</button></a>
-              </li>
-              <li>
-                <img class="profile-pic" src="<%= profilePic %>"/>
-              </li>
-              <li>
-                <a href="#"><p class="profile-name"><%= profileName %></p></a>
-              </li>
+
+                <% if (loginStatus) { %>
+                  <li class="nav-item">
+                    <img class="profile-pic img-circle img-thumbnail" src="<%= profilePic %>" alt="avatar">
+                  </li>
+                  <li class="nav-item">
+                    <a href="/profile"><p class="profile-name "><%=  profileName.split(' ')[0] + " " + profileName.split(' ')[1]%></p></a>
+                  </li>
+
+                <% } else { %>
+                <li class="nav-item btn-sign"></li>
+                  <a href="/login"><button class="btn btn-dark btn-lg">Sign in</button></a>
+                </li>
+                <li class="nav-item btn-sign">
+                  <a href="/signup"><button class="btn btn-lg btn-outline-dark">Sign up</button></a>
+                </li>
+                  <% } %>
+
+
             </ul>
 
         </div>

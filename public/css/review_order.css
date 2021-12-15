@@ -1,0 +1,126 @@
+/* ----------
+Header css
+---------- */
+
+.booking-summary{
+  padding-top: 2%;
+  /* background-color: #EDEDED; */
+  background-color: #FEF9EF;
+  padding-bottom: 22%;
+}
+
+
+/* --------------------------------
+Details and offer container CSS
+-------------------------------- */
+.check-details{
+  background-color: #fff;
+  border-radius: 10px;
+  width:50%;
+  margin-bottom: 15%;
+}
+.section-header{
+  /* background-color: #FEF9EF; */
+  background-color: #f55253 !important;
+  padding:15px 10px;
+  color:#fff;
+  border-top-left-radius: 5px;
+  border-top-right-radius:5px;
+}
+.rest-name{
+  padding:10px;
+}
+
+/* --------------------
+Date,Time,Guests CSS
+--------------------- */
+.booking-info{
+  text-align: center;
+  padding:10px;
+}
+/*
+------------------
+Selected Date,time
+------------------ */
+.details{
+  font-weight: bold;
+}
+.deal-header{
+  padding:0 10px;
+  padding-bottom: 10px;
+}
+.deal-details{
+  padding:0 10px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  margin:auto 35%;
+  font-weight: 600;
+}
+.deal-offer{
+  margin-top: 1%;
+  padding:2% 0;
+  border-radius: 5px;
+  padding: 7% 0;
+}
+.rupee-symbol{
+  font-family: sans-serif;
+}
+
+.confirm-row{
+  height: 250px;
+  width: 1500px;
+}
+/*
+-----------
+Book button
+----------- */
+.button-submit{
+  background-color: #f55253 !important;;
+  color: white;
+  padding: 20px 0;
+  border-radius: 6px;
+  border: none;
+  margin:25px auto;
+}
+
+
+
+/* Instructions from Restaurant Container */
+/* .instruction-section_header{
+  font-weight: 500;
+  font-size: 25px;
+  font-family: "Poppins", sans-serif;
+}
+.dining-information{
+  font-size: 20px;
+  color:#f55253;
+}
+.para{
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: 0.005em;
+  max-width: 80%;
+  font-size:15px;
+} */
+
+
+/* @media only screen and (max-width: 1100px) {
+  .check-details{
+    height:500px;
+  }
+} */
+@media only screen and (max-width: 910px) {
+.check-details{
+  width: 70%;
+  margin-bottom: 18%;
+}
+@media only screen and (max-width: 650px) {
+.check-details{
+  width: 90%;
+  margin-bottom: 30%;
+}
+/* .instruction-section{
+  width:80%;
+} */
+}

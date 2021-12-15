@@ -9,32 +9,13 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
 const _ = require("lodash")
-
 const app = express();
 
-var loginStatus = 0;
 app.use(express.static(__dirname + '/public'));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-
-function navRender(page, req, res){
-  if(req.isAuthenticated()){
-    res.render(page, {
-      loginStatus: loginStatus,
-      profilePic: req.user.photourl,
-      profileName: req.user.name
-    })
-  }
-  else{
-    res.render(page, {
-      loginStatus: loginStatus,
-      profilePic: 0,
-      profileName: 0
-    });
-  }
-}
 
 app.use(session({
   secret: "our little secret",
@@ -44,9 +25,20 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session())
-
 mongoose.connect("mongodb://127.0.0.1:27017/resdineDB");
+
+const orderSchema = new mongoose.Schema({
+  guests: Number,
+  resTime: String,
+  resDate: Date,
+  resName: String,
+  resId: String,
+  userID: String,
+  price: Number
+})
+
 const userSchema = new mongoose.Schema({
+  username : String,
   name: String,
   email: String,
   address: String,
@@ -54,7 +46,7 @@ const userSchema = new mongoose.Schema({
   googleId: String,
   phone: String,
   gender: String,
-  photourl: String
+  photourl: String,
 });
 
 const cityRestuarantSchema = new mongoose.Schema({
@@ -76,6 +68,7 @@ userSchema.plugin(findOrCreate);
 
 const User = mongoose.model("User", userSchema);
 const cityRestuarant = mongoose.model("cityRestuarant", cityRestuarantSchema);
+const Order = mongoose.model("Order", orderSchema);
 
 passport.use(User.createStrategy());
 
@@ -96,24 +89,61 @@ passport.use(new GoogleStrategy({
   },
   function (accessToken, refreshToken, profile, cb) {
     // console.log(profile)
-    User.findOrCreate({ googleId: profile.id, username: profile.emails[0].value, name: profile.displayName, photourl: profile.photos[0].value }, function (err, user) {
+    User.findOrCreate({ googleId: profile.id, email: profile.emails[0].value, username: profile.displayName , name: profile.displayName, photourl: profile.photos[0].value }, function (err, user) {
       return cb(err, user);
     });
   }
 ));
 
+function navRender(page, req, res){
+  if(req.isAuthenticated()){
+    res.render(page, {
+      loginStatus: 1,
+      profileName: req.user.name,
+      profilePic: req.user.photourl,
+      user: req.user
+    })
+  }
+  else{
+    res.render(page, {
+      loginStatus: 0,
+      profileName: 0,
+      profilePic: 0,
+      user: 0
+    });
+  }
+}
+
 app.get("/", function (req, res) {
   navRender("home", req, res);
 });
+
+app.get("/additional", function(req, res){
+  navRender("additional", req, res);
+})
+
+app.post("/additional", function(req, res){
+  User.findOneAndUpdate({googleId : req.user.googleId}, {phone : req.body.phoneNo, address : req.body.addressTextarea}, {upsert: true}, function(err){
+    if (err){
+      console.log(err);
+    }
+    else{
+      res.redirect("/selectcity");
+    }
+  });
+})
 
 app.get('/auth/google', passport.authenticate('google', { scope: ["email", "profile"] }));
 
 app.get('/auth/google/resdine',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function (req, res) {
-    // Successful authentication, redirect home.
-    loginStatus = 1;
-    res.redirect("/selectcity");
+    if(req.user.phone === undefined){
+      res.redirect("/additional");
+    }
+    else{
+      res.redirect("/selectcity");
+    }
   });
 
 app.get("/signup", function (req, res) {
@@ -126,7 +156,8 @@ app.post("/signup", function (req, res) {
     name: req.body.name,
     address: req.body.address,
     phone: req.body.number,
-    gender: req.body.gender
+    gender: req.body.gender,
+    photourl : "images/profile-default.jpg"
   }, req.body.password, function (err, user) {
     if (err) {
       console.log(err);
@@ -168,14 +199,13 @@ app.post("/selectcity", function (req, res) {
 
 app.get("/restaurantcity/:city", function(req, res){
   const cityName = _.startCase(_.toLower(req.params.city));
-
   cityRestuarant.find({city : cityName},function(err, foundRestaurants){
     if(err){
       console(err);
     }else{
       if(req.isAuthenticated()){
         res.render("restaurantcity", {
-          loginStatus: loginStatus,
+          loginStatus: 1,
           profilePic: req.user.photourl,
           profileName: req.user.name,
           city: cityName,
@@ -184,7 +214,7 @@ app.get("/restaurantcity/:city", function(req, res){
       }
       else{
         res.render("restaurantcity", {
-          loginStatus: loginStatus,
+          loginStatus: 0,
           profilePic: 0,
           profileName: 0,
           city: cityName,
@@ -195,11 +225,12 @@ app.get("/restaurantcity/:city", function(req, res){
   })
 })
 
-var savedres;
+
 app.get("/restaurantpage/:name",function(req,res){
     const restaurantName = req.params.name;
 
     cityRestuarant.findOne({name : restaurantName}, function(err, foundRestaurant){
+      let savedres;
       if (foundRestaurant != null){
         savedres = foundRestaurant;
       }
@@ -209,7 +240,7 @@ app.get("/restaurantpage/:name",function(req,res){
       }else{
         if(req.isAuthenticated()){
           res.render("restaurantpage", {
-            loginStatus: loginStatus,
+            loginStatus: 1,
             profilePic: req.user.photourl,
             profileName: req.user.name,
             restaurant : savedres
@@ -217,7 +248,7 @@ app.get("/restaurantpage/:name",function(req,res){
         }
         else{
           res.render("restaurantpage", {
-            loginStatus: loginStatus,
+            loginStatus: 0,
             profilePic: 0,
             profileName: 0,
             restaurant : savedres
@@ -227,12 +258,134 @@ app.get("/restaurantpage/:name",function(req,res){
     })
 })
 
-app.post("/payment", function(req, res){
-  let guests = req.body.guests;
-  let resDate = req.body.bookingDate;
-  let time = req.body.time;
+app.get("/profile", function(req, res){
+  if(req.isAuthenticated()){
+    Order.find({userId: req.user._id.toString()}, function(err, order){
+      res.render("user_profile", {
+        loginStatus: 1,
+        profileName: req.user.name,
+        profilePic: req.user.photourl,
+        user: req.user,
+        orders: order,
+        updateStatusUser : "",
+        updateStatusPassword : ""
+      })
+    })
+  }
+  else{
+    res.redirect("/login")
+  }
 })
+
+app.post("/editUser", function(req, res){
+  if(req.isAuthenticated()){
+      req.user.name = req.body.name;
+      req.user.phone = req.body.phone;
+      req.user.email = req.body.email;
+      req.user.address = req.body.address;
+      Order.find({userId: req.user._id.toString()}, function(err, order){
+      res.render("user_profile", {
+        loginStatus: 1,
+        profileName: req.user.name,
+        profilePic: req.user.photourl,
+        orders: order,
+        user: req.user,
+        updateStatusUser : "Updated Sucessfully",
+        updateStatusPassword : ""
+      })
+    })
+  }
+  else{
+    res.redirect("/login")
+  }
+})
+
+app.post("/editPassword", function(req, res){
+
+  if(req.isAuthenticated()){
+    if(req.user.password === undefined || req.user.password === req.body.old-password  ){
+      req.user.password = req.body.new-password;
+      Order.find({userId: req.user._id.toString()}, function(err, order){
+        res.render("user_profile", {
+          loginStatus: 1,
+          profileName: req.user.name,
+          profilePic: req.user.photourl,
+          orders: order,
+          user: req.user,
+        updateStatusUser : "",
+        updateStatusPassword : "Updated Sucessfully"
+      })
+    })
+    }
+    else{
+      Order.find({userId: req.user._id.toString()}, function(err, order){
+        res.render("user_profile", {
+          loginStatus: 1,
+          profileName: req.user.name,
+          profilePic: req.user.photourl,
+          orders: order,
+          user: req.user,
+        updateStatusUser : "",
+        updateStatusPassword : "Old Password invalid"
+      })
+    })
+    }
+  }
+  else{
+    res.redirect("/login")
+  }
+})
+
+
+app.post("/revieworder/:resId", function(req, res){
+  let newOrder = new Order();
+  if(req.isAuthenticated()){
+    let guests = req.body.guests;
+    let resDate = req.body.bookingDate;
+    let resTime = req.body.time;
+    let resId = req.params.resId;
+    let price = guests * 50;
+
+    cityRestuarant.findOne({_id: resId}, function(err, foundRestaurant){
+      newOrder = new Order({
+        guests : guests,
+        resDate : resDate,
+        resTime : resTime,
+        resName : foundRestaurant.name,
+        userID : req.user._id,
+        resId : resId,
+        price : price
+      });
+
+      res.render("review_order", {
+        loginStatus: 1,
+        profileName: req.user.name,
+        profilePic: req.user.photourl,
+        user: req.user,
+        restaurant: foundRestaurant,
+        guests : guests,
+        resDate : resDate,
+        resTime : resTime,
+        price : price
+      });
+    });
+    newOrder.save(); //Order saved to database
+  }
+  else{
+    res.redirect("/signup");
+  }
+});
+
+app.post("/payment", function(req, res){
+  
+  res.redirect("/");
+})
+
+app.get("/logout", function(req, res){
+  req.logout();
+  res.redirect("/");
+});
 
 app.listen(3000, function () {
   console.log("Server running on Port 3000");
-})
+});

@@ -1,0 +1,91 @@
+<%- include("partials/header") %>
+
+<body class="" style="background-color:powderblue;">
+  <!-- Navbar start -->
+
+  <header class="booking-summary">
+
+    <div class="noclass">
+      <!-- container -->
+      <div class="row confirm-row">
+        <div class="container col-6 check-details">
+          <div class="row section-header catch-title">
+            <h3>Booking Summary</h3>
+          </div>
+          <div class="row rest-name">
+            <h5><%= restaurant.name %></h5>
+            <p class="text-muted"><%= restaurant.address %></p>
+          </div>
+          <div class="row booking-info">
+            <div class="col">
+              <span class="text-muted">Date</span>
+            </div>
+            <div class="col">
+              <span class="text-muted">Time</span>
+            </div>
+            <div class="col">
+              <span class="text-muted">Guests</span>
+            </div>
+          </div>
+          <div class="row booking-info">
+            <div class="col">
+              <span class="details"><%= resDate.split("-").reverse().join("-") %></span>
+            </div>
+            <div class="col">
+              <span class="details"><%= resTime %></span>
+            </div>
+            <div class="col">
+              <span class="details"><%= guests %></span>
+            </div>
+          </div>
+          <hr />
+          <!-- <div class="row deal-header">
+        <i class="fas fa-check-circle fa-2x"></i>
+        <h4 class="col-7">Deal Selected</h4>
+        <h6>Today's Special offer</h6>
+        <h7 style="color:white;"class="bg-success col-6 ">25% of on all food beverages</h7>
+      </div> -->
+          <div class="row deal-header">
+            <div class="col-1">
+              <i class="fas fa-check-circle fa-2x"></i>
+            </div>
+            <div class="col-11">
+              <h4>Total Booking Amount to be Paid</h4>
+            </div>
+          </div>
+          <div class="row deal-details">
+            <h7 style="color:white;" class="bg-success deal-offer"><span class="rupee-symbol">₹ </span> <%= price %> </h7>
+          </div>
+          <form action="/payment" method="post">
+            <div class="row">
+              <button type="submit" class="btn button-submit btn-md col-sm-11 col-11">Proceed to Payment</button>
+            </div>
+          </form>
+        </div>
+        <!-- <div class="container col-4 instruction-section">
+      <div class="row instruction-section_header ">
+        What to know before you go?
+      </div>
+      <br />
+      <div class="row instruction-section_header dining-information">
+        Important dining information
+      </div>
+      <br />
+      <div class="row para">
+          We have a 10 minute grace period. Please call us if you are running later than 10 minutes after your booked time.
+      </div><br />
+      <div class="row para">
+        Please note all tables booked before 7pm (6pm on Saturdays) will be allocated 2 hours to enjoy our Set Menu. Bookings after 7pm (6pm on Saturdays) will be allocated 2.5 hours for our Tasting Menu (if you’d like it before 7pm, please call us to check availability). We will follow all government guidelines to ensure your safety. We look forward to welcoming you soon.
+      </div>
+    </div> -->
+      </div>
+    </div>
+
+
+
+
+
+  </header>
+
+
+<%- include('partials/footer') %>

@@ -143,6 +143,13 @@ padding:1% 10px 5%;
     padding: 0.5rem 1rem;
   }
 
+  .restaurant-title-content {
+    position: relative;
+    z-index: 1;
+    margin: 300px 10px 5px;
+    padding: 7% 7% 7% 10%;
+  }
+
   .book-a-table {
     padding: 7% 7% 7% 10%;
     border-top-left-radius: 0;
@@ -180,6 +187,13 @@ padding:1% 10px 5%;
     padding: 1% 10px 5%;
   }
 
+  .restaurant-title-content {
+    position: relative;
+    z-index: 1;
+    margin: 50% 10px 5px;
+    padding: 7% 7% 7% 10%;
+  }
+
   .book-a-table {
     padding: 7% 7% 7% 10%;
     border-top-left-radius: 0;
@@ -206,5 +220,14 @@ padding:1% 10px 5%;
   }
   #book-a-table-col {
     padding-left: 12px;
+  }
+}
+
+@media only screen and (max-width: 576px){
+  .restaurant-title-content {
+    position: relative;
+    z-index: 1;
+    margin: 300px 10px 5px;
+    padding: 7% 7% 7% 10%;
   }
 }

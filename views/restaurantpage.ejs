@@ -6,41 +6,41 @@
 <section class="restaurant-title-content">
   <div class="main-container">
     <div class="row">
-      <div class="col col-lg-8 col-md-12 col-sm-12">
+      <div class="col col-lg-8 col-md-12 col-sm-12 col-12">
         <div class="restaurant-info-container-wrap">
           <div class="restaurant-info-container">
             <div class="row">
-              <div class="col col-lg-12 col-md-12 col-sm-12">
+              <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="restaurant-name">
                   <h1 class="restaurant-name"><b><%= restaurant.name %></b></h1>
                 </div>
               </div>
-              <div class="col col-lg-6 col-md-6 col-sm-12">
+              <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                 <div class="restaurant-features-left" id="address">
                   <i class="fas fa-location-arrow"></i>
                   Location of Restaurant: <%= restaurant.address %>
                 </div>
               </div>
-              <div class="col col-lg-6 col-md-6 col-sm-12">
+              <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                 <div class="restaurant-features-left">
                   <i class="fas fa-clock "></i>
                   <span>Open from: <%= restaurant.openFrom %> - <%= restaurant.openTill %></span>
                 </div>
               </div>
-              <div class="col col-lg-6 col-md-6 col-sm-12">
+              <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                 <div class="restaurant-features-right">
                   <i class="fas fa-star icon-rating"></i>
                   Ratings: <%= restaurant.ratings %> <i class="fas fa-star rating-star"></i>
                 </div>
               </div>
-              <div class="col col-lg-6 col-md-6 col-sm-12">
+              <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
                 <div class="restaurant-features-right">
                   <i class="fas fa-phone-alt"></i>
                   Call Restaurant: <%= restaurant.phone %>
                 </div>
               </div>
             </div>
-            <div class="col col-lg-12 col-md-12 col-sm-12">
+            <div class="col col-lg-12 col-md-12 col-sm-12 col-12">
               <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                   <button class="nav-link active" id="about-tab" data-bs-toggle="tab" data-bs-target="#about" type="button" role="tab" aria-controls="about" aria-selected="true">About</button>
@@ -54,23 +54,22 @@
               </ul>
               <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="home-tab">
-                  <h4 class="about-restaurant"><b style="color:green">About</b> &nbsp;&nbsp;<%= restaurant.name %>, &nbsp;<%= restaurant.city %></h4>
-                  <hr class="res-hr">
+                  <br>
                   <p class="restaurant-description">
                     <%= restaurant.description %>
                   </p><br /><br />
                 </div>
                 <div class="tab-pane fade" id="menu" role="tabpanel" aria-labelledby="profile-tab">
-                  <h4 class="about-restaurant"><%= restaurant.name %> <b style="color:green">Menu</b></h4>
-                  <hr class="res-hr"><br />
+                  <br>
+                  <br>
                   <div>
                     <img src=<%= restaurant.menuImage %> alt="menu1">
                   </div>
                   <br /><br /><br />
                 </div>
                 <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="contact-tab">
-                  <h4 class="about-restaurant"><%= restaurant.name %> <b style="color:green">Images</b></h4>
-                  <hr class="res-hr"><br />
+                  <br>
+                  <br>
                   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
                       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -103,19 +102,19 @@
           </div>
         </div>
       </div>
-      <div class="col col-lg-4 col-md-12 col-sm-12" id='book-a-table-col'>
+      <div class="col col-lg-4 col-md-12 col-sm-12 col-12" id='book-a-table-col'>
         <section class="book-a-table">
 
           <h3 class="make-res">Make a Reservation</h3>
           <hr class="res-hr">
 
-          <form action="/payment" method="post">
+          <form action="/revieworder/<%= restaurant._id %>" method="post">
             <div class="guest-container">
               <div class="book-a-table-icon">
                 <i class="fas fa-user-plus fa-2x"></i>
               </div>
               <div class="book-a-table-selection">
-                <select class="custom-select custom-select-guest custom-select-md mb-3 col-9" style="border:2px solid grey;" name="guests">
+                <select class="custom-select custom-select-guest custom-select-md mb-3 col-9" style="border:2px solid grey;" name="guests" required>
                   <option selected>Select number of guests</option>
                   <option value="1">1 Guest</option>
                   <option value="2">2 Guests</option>
@@ -132,13 +131,13 @@
                 <i class="fas fa-table fa-2x"></i>
               </div>
               <div class="book-a-table-selection">
-                <input type="date" id="date-of-booking" name="bookingDate" style="border:2px solid grey;">
+                <input type="date" id="date-of-booking" name="bookingDate" style="border:2px solid grey;" required>
               </div>
             </div>
             <div class="time-container">
 
               <i class="fas fa-clock fa-2x book-a-table-icon"></i>
-              <select class="custom-select custom-select-md mb-3 col-9" style="border:2px solid grey;" name="time">
+              <select class="custom-select custom-select-md mb-3 col-9" style="border:2px solid grey;" name="time" required>
                 <option selected>Select time</option>
                 <option value="11am">11 A.M</option>
                 <option value="12pm">12 P.M</option>

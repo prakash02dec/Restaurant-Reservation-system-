@@ -1,0 +1,27 @@
+<%- include('partials/header') %>
+
+	<!-- Navbar Ends -->
+	<div class="container">
+		<div class="login-card">
+			<input type="checkbox" id="chk" aria-hidden="true" name="">
+			<div class="login-content">
+				<div class="front">
+					<div class="inner">
+						<h2 class="additional-heading">Additional Information</h2>
+						<p>Please enter your current Address and Phone number.</p>
+						<form action="/additional" method="post">
+            <input type="text" name="phoneNo" pattern="[0-9]{10}"
+		     title="Enter a valid 10 Digit Phone Number" placeholder="Phone No.">
+            <p id='addr-text'>Address:</p>
+						<textarea name="addressTextarea" rows="5" cols="35"></textarea>
+            <!-- <input type="text" name="Address" size="100" placeholder="Address"> -->
+						<button type="submit" class="login-btn">Proceed</button>
+						</form>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+<%- include('partials/footer.ejs') %>
