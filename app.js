@@ -28,10 +28,11 @@ app.use(passport.session())
 mongoose.connect("mongodb://127.0.0.1:27017/resdineDB");
 
 const orderSchema = new mongoose.Schema({
-  resName: String,
   guests: Number,
   resTime: String,
-  resDate: Date
+  resDate: Date,
+  resId: String,
+  userID: String
 })
 const Order = mongoose.model("Order", orderSchema);
 
@@ -45,7 +46,6 @@ const userSchema = new mongoose.Schema({
   phone: String,
   gender: String,
   photourl: String,
-  orders: [orderSchema]
 });
 
 const cityRestuarantSchema = new mongoose.Schema({
@@ -258,13 +258,16 @@ app.get("/restaurantpage/:name",function(req,res){
 
 app.get("/profile", function(req, res){
   if(req.isAuthenticated()){
-    res.render("user_profile", {
-      loginStatus: 1,
-      profileName: req.user.name,
-      profilePic: req.user.photourl,
-      user: req.user,
-      updateStatusUser : "",
-      updateStatusPassword : ""
+    Order.find({userId: req.user._id.toString()}, function(err, order){
+      res.render("user_profile", {
+        loginStatus: 1,
+        profileName: req.user.name,
+        profilePic: req.user.photourl,
+        user: req.user,
+        orders: order,
+        updateStatusUser : "",
+        updateStatusPassword : ""
+      })
     })
   }
   else{
@@ -292,8 +295,9 @@ app.post("/editUser", function(req, res){
     res.redirect("/login")
   }
 })
+
 app.post("/editPassword", function(req, res){
-  
+
   if(req.isAuthenticated()){
     if(req.user.password === undefined || req.user.password === req.body.old-password  ){
       req.user.password = req.body.new-password;
@@ -322,27 +326,26 @@ app.post("/editPassword", function(req, res){
   }
 })
 
-app.post("/payment/:resName", function(req, res){
+app.post("/payment/:resId", function(req, res){
   if(req.isAuthenticated()){
     let guests = req.body.guests;
     let resDate = req.body.bookingDate;
     let resTime = req.body.time;
-    let resName = req.params.resName;
+    let resId = req.params.resId;
 
     let newOrder = new Order({
       guests : guests,
       resDate : resDate,
-      resName : resName,
-      resTime : resTime
+      resTime : resTime,
+      userID : req.user._id,
+      resId : resId
     });
 
-    req.user.orders.push(newOrder);
-    req.user.save();
+    newOrder.save();
   }
   else{
     res.redirect("/signup");
   }
-
 });
 
 app.get("/logout", function(req, res){

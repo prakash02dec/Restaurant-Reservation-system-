@@ -1,0 +1,81 @@
+/* ----------
+title
+---------- */
+
+.title-container{
+  padding-top:1%;
+}
+.catch-title1 {
+  color: #F2F2F2;
+  font-size: 4.2rem;
+  text-align: center;
+  padding-top: 3.5rem;
+  padding-bottom: 45px;;
+}
+
+
+
+/* -----
+Icon
+----- */
+.icon {
+ background: #f55253 !important;;
+ color: white;
+ padding:15px 3%;
+ text-align: center;
+ border-radius: 3px;
+}
+
+
+/*
+------------
+Submit button
+------------ */
+.select-city{
+  width:40%;
+  margin: auto ;
+  padding-bottom: 2%;
+}
+.submit-button {
+  background-color: #f55253 !important;;
+  color: white;
+  padding: 20px 0;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 75px;
+  margin-left: 24%;
+}
+.submit-button:hover {
+ opacity: 0.9;
+}
+
+
+@media only screen and (max-width: 992px) {
+  .select-city{
+    width:50%;
+    margin: auto ;
+    padding-bottom: 2%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .select-city{
+    width:60%;
+    margin: auto ;
+    padding-bottom: 2%;
+  }
+  .icon {
+    padding-left: 2%;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .select-city{
+    width:70%;
+    margin: auto ;
+    padding-bottom: 2%;
+  }
+  .icon {
+    padding-left: 2%;
+  }
+}

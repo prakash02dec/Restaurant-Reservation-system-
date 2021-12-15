@@ -46,6 +46,9 @@ input[type=file]::file-selector-button {
   /* font-size: 10px; */
 }
 
+.btn:focus {
+  box-shadow: none !important;
+}
 
 .grid-booking >article .text {
 

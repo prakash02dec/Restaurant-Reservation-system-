@@ -12,15 +12,15 @@
               <div class="profile_options_heading">
                 <div class="text-center">
                   <img src="<%= profilePic %>" class="avatar img-circle img-thumbnail" alt="avatar">
-                  <h6 id="photo-upload">Upload a different photo...</h6>
+                  <h6 id="photo-upload">Upload a Different Photo</h6>
                   <div class="profile-image">
-                    <input for="files" type="file" class="profile-image-file btn  ">
+                    <input for="files" type="file" class="profile-image-file btn">
                   </div>
                   <div class="profile_options_content_txt">
                     <a href="/logout" class="btn profile-btn ">Log Out</a>
                   </div>
                 </div>
-                </hr><br>
+                <br>
               </div>
             </div>
             <div class="col-xl-9 col-lg-9 col-md-8 col-sm-12 col-12">
@@ -36,7 +36,7 @@
                       Password</button>
                   </li>
                 <% } %>
-               
+
                 <li class="nav-item" role="presentation">
                   <button class="nav-link" id="booking-tab" data-bs-toggle="tab" data-bs-target="#booking" type="button"
                     role="tab" aria-controls="booking" aria-selected="false">Bookings</button>
@@ -189,11 +189,11 @@
                     </form>
                   </div>
                 <% } %>
-               
+
                 <div class="tab-pane fade" id="booking" role="tabpanel" aria-labelledby="booking-tab">
                   <main class="grid-booking">
-                    <%if( user.orders.len !== undefined ){ %>
-                      <% user.orders.forEach(function (order) { %>
+                    <%if( orders[0] !== undefined ){ %>
+                      <% orders.forEach(function (order) { %>
                         <article>
                           <div class="previous-restaurants-wrap">
                             <div class="row">
@@ -208,7 +208,7 @@
                                 </h3>
                                 <div class="row">
                                   <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <h6 class="restaurant-booking-details">Date of Booking: <%= order.resDate %>
+                                    <h6 class="restaurant-booking-details">Date of Booking: <%= order.resDate.toString().slice(0, 15) %>
                                     </h6>
                                   </div>
                                   <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
