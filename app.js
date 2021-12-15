@@ -9,34 +9,13 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
 const _ = require("lodash")
-
 const app = express();
 
-var loginStatus = 0;
 app.use(express.static(__dirname + '/public'));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({
   extended: true
 }));
-
-function navRender(page, req, res){
-  if(req.isAuthenticated()){
-    res.render(page, {
-      loginStatus: loginStatus,
-      profileName: req.user.name,
-      profilePic: req.user.photourl,
-      user: req.user
-    })
-  }
-  else{
-    res.render(page, {
-      loginStatus: loginStatus,
-      profileName: 0,
-      profilePic: 0,
-      user: 0
-    });
-  }
-}
 
 app.use(session({
   secret: "our little secret",
@@ -57,6 +36,7 @@ const orderSchema = new mongoose.Schema({
 const Order = mongoose.model("Order", orderSchema);
 
 const userSchema = new mongoose.Schema({
+  username : String,
   name: String,
   email: String,
   address: String,
@@ -66,7 +46,7 @@ const userSchema = new mongoose.Schema({
   gender: String,
   photourl: String,
   orders: [orderSchema]
-}, {strict: false});
+});
 
 const cityRestuarantSchema = new mongoose.Schema({
   city : String,
@@ -107,11 +87,30 @@ passport.use(new GoogleStrategy({
   },
   function (accessToken, refreshToken, profile, cb) {
     // console.log(profile)
-    User.findOrCreate({ googleId: profile.id, username: profile.emails[0].value, name: profile.displayName, photourl: profile.photos[0].value }, function (err, user) {
+    User.findOrCreate({ googleId: profile.id, email: profile.emails[0].value, username: profile.displayName , name: profile.displayName, photourl: profile.photos[0].value }, function (err, user) {
       return cb(err, user);
     });
   }
 ));
+
+function navRender(page, req, res){
+  if(req.isAuthenticated()){
+    res.render(page, {
+      loginStatus: 1,
+      profileName: req.user.name,
+      profilePic: req.user.photourl,
+      user: req.user
+    })
+  }
+  else{
+    res.render(page, {
+      loginStatus: 0,
+      profileName: 0,
+      profilePic: 0,
+      user: 0
+    });
+  }
+}
 
 app.get("/", function (req, res) {
   navRender("home", req, res);
@@ -137,8 +136,6 @@ app.get('/auth/google', passport.authenticate('google', { scope: ["email", "prof
 app.get('/auth/google/resdine',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function (req, res) {
-    loginStatus = 1;
-
     if(req.user.phone === undefined){
       res.redirect("/additional");
     }
@@ -157,14 +154,14 @@ app.post("/signup", function (req, res) {
     name: req.body.name,
     address: req.body.address,
     phone: req.body.number,
-    gender: req.body.gender
+    gender: req.body.gender,
+    photourl : "images/profile-default.jpg"
   }, req.body.password, function (err, user) {
     if (err) {
       console.log(err);
       res.redirect("/signup");
     } else {
       passport.authenticate("local")(req, res, function () {
-        loginStatus = 1;
         res.redirect("/selectcity")
       })
     }
@@ -184,7 +181,6 @@ app.post("/login", function (req, res) {
     if (err) { console.log(err) }
     else {
       passport.authenticate("local")(req, res, function () {
-        loginStatus = 1;
         res.redirect("/selectcity")
       })
     }
@@ -201,14 +197,13 @@ app.post("/selectcity", function (req, res) {
 
 app.get("/restaurantcity/:city", function(req, res){
   const cityName = _.startCase(_.toLower(req.params.city));
-
   cityRestuarant.find({city : cityName},function(err, foundRestaurants){
     if(err){
       console(err);
     }else{
       if(req.isAuthenticated()){
         res.render("restaurantcity", {
-          loginStatus: loginStatus,
+          loginStatus: 1,
           profilePic: req.user.photourl,
           profileName: req.user.name,
           city: cityName,
@@ -217,7 +212,7 @@ app.get("/restaurantcity/:city", function(req, res){
       }
       else{
         res.render("restaurantcity", {
-          loginStatus: loginStatus,
+          loginStatus: 0,
           profilePic: 0,
           profileName: 0,
           city: cityName,
@@ -228,11 +223,12 @@ app.get("/restaurantcity/:city", function(req, res){
   })
 })
 
-var savedres;
+
 app.get("/restaurantpage/:name",function(req,res){
     const restaurantName = req.params.name;
 
     cityRestuarant.findOne({name : restaurantName}, function(err, foundRestaurant){
+      let savedres;
       if (foundRestaurant != null){
         savedres = foundRestaurant;
       }
@@ -242,7 +238,7 @@ app.get("/restaurantpage/:name",function(req,res){
       }else{
         if(req.isAuthenticated()){
           res.render("restaurantpage", {
-            loginStatus: loginStatus,
+            loginStatus: 1,
             profilePic: req.user.photourl,
             profileName: req.user.name,
             restaurant : savedres
@@ -250,7 +246,7 @@ app.get("/restaurantpage/:name",function(req,res){
         }
         else{
           res.render("restaurantpage", {
-            loginStatus: loginStatus,
+            loginStatus: 0,
             profilePic: 0,
             profileName: 0,
             restaurant : savedres
@@ -261,24 +257,69 @@ app.get("/restaurantpage/:name",function(req,res){
 })
 
 app.get("/profile", function(req, res){
-  navRender("user_profile", req, res);
-})
-
-app.get("/editprofile", function(req, res){
-  navRender("edit_profile", req, res);
-})
-
-app.get("/resetpassword", function(req, res){
-  if (req.user.googleId === undefined){
-    navRender("reset_password", req, res);
+  if(req.isAuthenticated()){
+    res.render("user_profile", {
+      loginStatus: 1,
+      profileName: req.user.name,
+      profilePic: req.user.photourl,
+      user: req.user,
+      updateStatusUser : "",
+      updateStatusPassword : ""
+    })
   }
   else{
-    res.redirect("/profile");
+    res.redirect("/login")
   }
 })
 
-app.get("/bookings", function(req, res){
-  navRender("bookings", req, res);
+app.post("/editUser", function(req, res){
+  if(req.isAuthenticated()){
+      req.user.name = req.body.name;
+      req.user.phone = req.body.phone;
+      req.user.email = req.body.email;
+      req.user.address = req.body.address;
+
+      res.render("user_profile", {
+        loginStatus: 1,
+        profileName: req.user.name,
+        profilePic: req.user.photourl,
+        user: req.user,
+        updateStatusUser : "Updated Sucessfully",
+        updateStatusPassword : ""
+      })
+  }
+  else{
+    res.redirect("/login")
+  }
+})
+app.post("/editPassword", function(req, res){
+  
+  if(req.isAuthenticated()){
+    if(req.user.password === undefined || req.user.password === req.body.old-password  ){
+      req.user.password = req.body.new-password;
+      res.render("user_profile", {
+        loginStatus: 1,
+        profileName: req.user.name,
+        profilePic: req.user.photourl,
+        user: req.user,
+        updateStatusUser : "",
+        updateStatusPassword : "Updated Sucessfully"
+      })
+    }
+    else{
+      res.render("user_profile", {
+        loginStatus: 1,
+        profileName: req.user.name,
+        profilePic: req.user.photourl,
+        user: req.user,
+        updateStatusUser : "",
+        updateStatusPassword : "Old Password invalid"
+      })
+    }
+  }
+  else{
+    res.redirect("/login")
+  }
 })
 
 app.post("/payment/:resName", function(req, res){
@@ -304,9 +345,8 @@ app.post("/payment/:resName", function(req, res){
 
 });
 
-app.get("/signout", function(req, res){
+app.get("/logout", function(req, res){
   req.logout();
-  loginStatus = 0;
   res.redirect("/");
 })
 

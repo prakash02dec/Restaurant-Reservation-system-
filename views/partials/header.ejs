@@ -26,9 +26,6 @@
     <link rel="stylesheet" href="/css/restaurant_list.css">
     <link rel="stylesheet" href="/css/restaurantpage.css">
     <link rel="stylesheet" href="/css/user_profile.css">
-    <link rel="stylesheet" href="/css/edit_profile.css">
-    <link rel="stylesheet" href="/css/reset_password.css">
-    <link rel="stylesheet" href="/css/bookings.css">
 
 </head>
 
@@ -59,18 +56,25 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right  ms-auto">
-              <li class="nav-item btn-sign">
-                <a href="/login"><button class="btn btn-dark btn-lg">Sign in</button></a>
-              </li>
-              <li class="nav-item btn-sign">
-                <a href="/signup"><button class="btn btn-lg btn-outline-dark">Sign up</button></a>
-              </li>
-              <li>
-                <img class="profile-pic" src="<%= profilePic %>"/>
-              </li>
-              <li>
-                <a href="/profile"><p class="profile-name"><%= profileName %></p></a>
-              </li>
+
+                <% if (loginStatus) { %>
+                  <li class="nav-item">
+                    <img class="profile-pic img-circle img-thumbnail" src="<%= profilePic %>" alt="avatar">
+                  </li>
+                  <li class="nav-item">
+                    <a href="/profile"><p class="profile-name "><%=  profileName.split(' ')[0] + " " + profileName.split(' ')[1]%></p></a>
+                  </li>
+
+                <% } else { %>
+                <li class="nav-item btn-sign"></li>
+                  <a href="/login"><button class="btn btn-dark btn-lg">Sign in</button></a>
+                </li>
+                <li class="nav-item btn-sign">
+                  <a href="/signup"><button class="btn btn-lg btn-outline-dark">Sign up</button></a>
+                </li>
+                  <% } %>
+
+
             </ul>
 
         </div>
