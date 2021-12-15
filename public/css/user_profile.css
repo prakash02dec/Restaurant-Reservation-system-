@@ -36,8 +36,8 @@ input[type=file]::file-selector-button {
 }
 
 .previous-restaurant-image{
-  max-height: 80%;
-  max-width: 80%;
+  max-height: 90%;
+  max-width: 97%;
   margin: 7% auto 13%;
 }
 .restaurant-booking-details {

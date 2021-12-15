@@ -31,8 +31,10 @@ const orderSchema = new mongoose.Schema({
   guests: Number,
   resTime: String,
   resDate: Date,
+  resName: String,
   resId: String,
-  userID: String
+  userID: String,
+  price: Number
 })
 const Order = mongoose.model("Order", orderSchema);
 
@@ -326,33 +328,57 @@ app.post("/editPassword", function(req, res){
   }
 })
 
-app.post("/payment/:resId", function(req, res){
+var newOrder = new Order();
+app.post("/revieworder/:resId", function(req, res){
   if(req.isAuthenticated()){
     let guests = req.body.guests;
     let resDate = req.body.bookingDate;
     let resTime = req.body.time;
     let resId = req.params.resId;
+    let price = guests * 50;
 
-    let newOrder = new Order({
-      guests : guests,
-      resDate : resDate,
-      resTime : resTime,
-      userID : req.user._id,
-      resId : resId
+
+
+    cityRestuarant.findOne({_id: resId}, function(err, foundRestaurant){
+      newOrder = new Order({
+        guests : guests,
+        resDate : resDate,
+        resTime : resTime,
+        resName : foundRestaurant.name,
+        userID : req.user._id,
+        resId : resId,
+        price : price
+      });
+
+      res.render("review_order", {
+        loginStatus: 1,
+        profileName: req.user.name,
+        profilePic: req.user.photourl,
+        user: req.user,
+        restaurant: foundRestaurant,
+        guests : guests,
+        resDate : resDate,
+        resTime : resTime,
+        price : price
+      });
     });
 
-    newOrder.save();
   }
   else{
     res.redirect("/signup");
   }
 });
 
-app.get("/logout", function(req, res){
-  req.logout();
+app.post("/payment", function(req, res){
+  newOrder.save(); //Order saved to database
   res.redirect("/");
 })
 
+app.get("/logout", function(req, res){
+  req.logout();
+  res.redirect("/");
+});
+
 app.listen(3000, function () {
   console.log("Server running on Port 3000");
-})
+});
