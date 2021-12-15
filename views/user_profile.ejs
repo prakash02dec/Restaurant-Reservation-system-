@@ -2,23 +2,243 @@
 
   <div class="main-content">
 
-    <!-- Header -->
-    <div class="header profile-header pb-8 pt-5 pt-lg-8 d-flex align-items-center">
-      <!-- Mask -->
-      <span class="mask bg-gradient-default opacity-8"></span>
-      <!-- Header container -->
-      <div class="container-fluid d-flex align-items-center">
-        <div class="row">
-          <div class="col-lg-7 col-md-10 profileText">
-            <h1 class="display-2 text-white">Hello, <%= user.name %></h1>
-            <p class="text-white mt-0 mb-5">Welcome to your profile <%= user.name %>. In this section you can edit your details and look for your past activities.</p>
-            <a href="/editprofile" class="btn btn-info profile-btn ">Edit my profile</a><br>
-            <a href="/resetpassword" class="btn btn-info profile-btn " id="reset-btn">Reset Password</a><br>
-            <a href="/bookings" class="btn btn-info profile-btn ">See my Bookings</a><br>
-            <a href="/signout" class="btn btn-info profile-btn ">Signout from account</a>
+    <section class="profile_options_wrapper">
+      <div class="profile_options_wrap">
+        <div class="container">
+          <h1 id="user-greeting">Hi, <%= user.name %>
+          </h1>
+          <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12">
+              <div class="profile_options_heading">
+                <div class="text-center">
+                  <img src="<%= profilePic %>" class="avatar img-circle img-thumbnail" alt="avatar">
+                  <h6 id="photo-upload">Upload a different photo...</h6>
+                  <div class="profile-image">
+                    <input for="files" type="file" class="profile-image-file btn  ">
+                  </div>
+                  <div class="profile_options_content_txt">
+                    <a href="/logout" class="btn profile-btn ">Log Out</a>
+                  </div>
+                </div>
+                </hr><br>
+              </div>
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-8 col-sm-12 col-12">
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                    type="button" role="tab" aria-controls="profile" aria-selected="true">Profile</button>
+                </li>
+                <% if (user.password !== undefined) { %>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="edit-password-tab" data-bs-toggle="tab" data-bs-target="#edit-password"
+                      type="button" role="tab" aria-controls="edit-password" aria-selected="false"> Edit
+                      Password</button>
+                  </li>
+                <% } %>
+               
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="booking-tab" data-bs-toggle="tab" data-bs-target="#booking" type="button"
+                    role="tab" aria-controls="booking" aria-selected="false">Bookings</button>
+                </li>
+              </ul>
+              <br>
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+                  <div class="row userDetails">
+                    <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                      <div class="form-group">
+                        <h4 class="user-profile-form-detail">Full name</h4>
+                        <h5 class="user-data">
+                          <%= user.name %>
+                        </h5>
+                      </div>
+                    </div>
+                    <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                      <div class="form-group">
+                        <h4 class="user-profile-form-detail">Phone number</h4>
+                        <h5 class="user-data">
+                          <%= user.phone %>
+                        </h5>
+                      </div>
+                    </div>
+                    <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                      <div class="form-group">
+                        <h4 class="user-profile-form-detail">Email</h4>
+                        <h5 class="user-data">
+                          <%= user.email %>
+                        </h5>
+                      </div>
+                    </div>
+                    <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                      <div class="form-group">
+                        <h4 class="user-profile-form-detail">Address</h4>
+                        <h5 class="user-data">
+                          <%= user.address %>
+                        </h5>
+                      </div>
+                    </div>
+                    <div class="col col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12">
+                      <div class="edit-details-btn">
+                        <button type="button" class="btn  profile-btn">Edit Profile</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <form class="form" action="/editUser" method="post" id="registrationForm">
+                    <div class="row editUserDetails">
+                      <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                          <label for="full_name">
+                            <h4 class="user-profile-form-detail">Full name</h4>
+                          </label>
+                          <input type="text" class="form-control" name="name" id="full_name" placeholder="full name"
+                            value="<%= user.name %>" title="enter your full name.">
+                        </div>
+                      </div>
+                      <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                          <label for="phone">
+                            <h4 class="user-profile-form-detail">Phone number</h4>
+                          </label>
+                          <input type="text" class="form-control" name="phone" id="phone"
+                            placeholder="enter phone number" value="<%= user.phone %>"
+                            title="enter your phone number if any.">
+                        </div>
+                      </div>
+                      <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                          <label for="email">
+                            <h4 class="user-profile-form-detail">Email</h4>
+                          </label>
+                          <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com"
+                            value="<%= user.email %>" title="enter your email.">
+                        </div>
+                      </div>
+                      <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                          <label for="location">
+                            <h4 class="user-profile-form-detail">Address</h4>
+                          </label>
+                          <input name="address" type="text" class="form-control" name="address" id="location"
+                            placeholder="home address" value="<%= user.address %>" title="enter a location">
+                        </div>
+                      </div>
+                      <div class="col col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12">
+                        <div class="edit-details-btn">
+                          <button type="submit" class="btn  profile-btn">Update</button>
+                          <button type="submit" class="btn btn-dark back-btn">Back</button>
+                        </div>
+                        <h6 id="photo-upload">
+                          <%= updateStatusUser %>
+                        </h6>
+                      </div>
+                    </div>
+                  </form>
+
+                </div>
+
+                <% if (user.password !== undefined) { %>
+                  <div class="tab-pane fade" id="edit-password" role="tabpanel" aria-labelledby="edit-password-tab">
+                    <form class="form" action="/editPassword" method="post" id="passwordChangeForm">
+                      <!-- <div class="row"> -->
+                      <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                          <label for="old-password">
+                            <h4 class="user-profile-form-detail"> Old Password</h4>
+                          </label>
+                          <input type="password" class="form-control" name="old-password" id="old-password"
+                            placeholder="Old Password" title="enter your old password.">
+                        </div>
+                      </div>
+                      <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                          <label for="new-password">
+                            <h4 class="user-profile-form-detail">New Password</h4>
+                          </label>
+                          <input type="password" class="form-control" name="new-password" id="new-password"
+                            placeholder="New Password" title="enter the new password." pattern="(?=.*\d)(?=.*[\W_]).{8,}"
+                            onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Minimum of 8 characters. Should have at least one special character and one number.' : ''); if(this.checkValidity()) form.confirmed_password = this.value;"
+                            title="Minimum of 8 characters. Should have at least one special character and one number."
+                            required>
+                        </div>
+                      </div>
+                      <div class="col col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                        <div class="form-group">
+                          <label for="confirm-password2">
+                            <h4 class="user-profile-form-detail">Confirm New Password</h4>
+                          </label>
+                          <input type="password" class="form-control" name="confirm-new-password" id="confirm-password"
+                            placeholder="Re-enter new password" title="enter new password once again."
+                            pattern="(?=.*\d)(?=.*[\W_]).{8,}"
+                            onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Minimum of 8 characters. Should have at least one special character and one number.' : ''); if(this.checkValidity()) form.confirmed_password = this.value;"
+                            title="Minimum of 8 characters. Should have at least one special character and one number."
+                            required>
+                        </div>
+                      </div>
+                      <div class="col col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="edit-details-btn">
+                          <button type="submit" class="btn  profile-btn">Change Password</button>
+                        </div>
+                        <h6 id="photo-upload">
+                          <%= updateStatusPassword %>
+                        </h6>
+                      </div>
+                      <!-- </div> -->
+                    </form>
+                  </div>
+                <% } %>
+               
+                <div class="tab-pane fade" id="booking" role="tabpanel" aria-labelledby="booking-tab">
+                  <main class="grid-booking">
+                    <%if( user.orders.len !== undefined ){ %>
+                      <% user.orders.forEach(function (order) { %>
+                        <article>
+                          <div class="previous-restaurants-wrap">
+                            <div class="row">
+                              <div class="col col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                                <img class="previous-restaurant-image"
+                                  src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZmluZSUyMGRpbmluZ3xlbnwwfHwwfHw%3D&w=1000&q=80"
+                                  alt="img">
+                              </div>
+                              <div class="col col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8">
+                                <h3 class="restaurant-booking-name">
+                                  <%= order.resname %>
+                                </h3>
+                                <div class="row">
+                                  <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h6 class="restaurant-booking-details">Date of Booking: <%= order.resDate %>
+                                    </h6>
+                                  </div>
+                                  <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h6 class="restaurant-booking-details">Reservation Time: <%= order.resTime %>
+                                    </h6>
+                                  </div>
+                                  <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h6 class="restaurant-booking-details">Number of people: <%= order.guests %>
+                                    </h6>
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </article>
+                        <% }) %>
+                          <% } else{ %>
+                            <h4>No Bookings Yet ...</h4>
+                            <%}%>
+                  </main>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-<%- include('partials/footer') %>
+    </section>
+
+  </div>
+  <%- include('partials/footer') %>

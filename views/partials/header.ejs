@@ -26,9 +26,6 @@
     <link rel="stylesheet" href="/css/restaurant_list.css">
     <link rel="stylesheet" href="/css/restaurantpage.css">
     <link rel="stylesheet" href="/css/user_profile.css">
-    <link rel="stylesheet" href="/css/edit_profile.css">
-    <link rel="stylesheet" href="/css/reset_password.css">
-    <link rel="stylesheet" href="/css/bookings.css">
 
 </head>
 
@@ -62,10 +59,10 @@
 
                 <% if (loginStatus) { %>
                   <li class="nav-item">
-                    <img class="profile-pic" src="<%= profilePic %>"/>
+                    <img class="profile-pic img-circle img-thumbnail" src="<%= profilePic %>" alt="avatar">
                   </li>
                   <li class="nav-item">
-                    <a href="/profile"><p class="profile-name"><%=  profileName.split(' ')[0] + " " + profileName.split(' ')[1]%></p></a>
+                    <a href="/profile"><p class="profile-name "><%=  profileName.split(' ')[0] + " " + profileName.split(' ')[1]%></p></a>
                   </li>
 
                 <% } else { %>

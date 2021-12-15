@@ -17,25 +17,6 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-function navRender(page, req, res){
-  if(req.isAuthenticated()){
-    res.render(page, {
-      loginStatus: 1,
-      profileName: req.user.name,
-      profilePic: req.user.photourl,
-      user: req.user
-    })
-  }
-  else{
-    res.render(page, {
-      loginStatus: 0,
-      profileName: 0,
-      profilePic: 0,
-      user: 0
-    });
-  }
-}
-
 app.use(session({
   secret: "our little secret",
   resave: false,
@@ -55,6 +36,7 @@ const orderSchema = new mongoose.Schema({
 const Order = mongoose.model("Order", orderSchema);
 
 const userSchema = new mongoose.Schema({
+  username : String,
   name: String,
   email: String,
   address: String,
@@ -64,7 +46,7 @@ const userSchema = new mongoose.Schema({
   gender: String,
   photourl: String,
   orders: [orderSchema]
-}, {strict: false});
+});
 
 const cityRestuarantSchema = new mongoose.Schema({
   city : String,
@@ -105,11 +87,30 @@ passport.use(new GoogleStrategy({
   },
   function (accessToken, refreshToken, profile, cb) {
     // console.log(profile)
-    User.findOrCreate({ googleId: profile.id, username: profile.emails[0].value, name: profile.displayName, photourl: profile.photos[0].value }, function (err, user) {
+    User.findOrCreate({ googleId: profile.id, email: profile.emails[0].value, username: profile.displayName , name: profile.displayName, photourl: profile.photos[0].value }, function (err, user) {
       return cb(err, user);
     });
   }
 ));
+
+function navRender(page, req, res){
+  if(req.isAuthenticated()){
+    res.render(page, {
+      loginStatus: 1,
+      profileName: req.user.name,
+      profilePic: req.user.photourl,
+      user: req.user
+    })
+  }
+  else{
+    res.render(page, {
+      loginStatus: 0,
+      profileName: 0,
+      profilePic: 0,
+      user: 0
+    });
+  }
+}
 
 app.get("/", function (req, res) {
   navRender("home", req, res);
@@ -256,24 +257,69 @@ app.get("/restaurantpage/:name",function(req,res){
 })
 
 app.get("/profile", function(req, res){
-  navRender("user_profile", req, res);
-})
-
-app.get("/editprofile", function(req, res){
-  navRender("edit_profile", req, res);
-})
-
-app.get("/resetpassword", function(req, res){
-  if (req.user.googleId === undefined){
-    navRender("reset_password", req, res);
+  if(req.isAuthenticated()){
+    res.render("user_profile", {
+      loginStatus: 1,
+      profileName: req.user.name,
+      profilePic: req.user.photourl,
+      user: req.user,
+      updateStatusUser : "",
+      updateStatusPassword : ""
+    })
   }
   else{
-    res.redirect("/profile");
+    res.redirect("/login")
   }
 })
 
-app.get("/bookings", function(req, res){
-  navRender("bookings", req, res);
+app.post("/editUser", function(req, res){
+  if(req.isAuthenticated()){
+      req.user.name = req.body.name;
+      req.user.phone = req.body.phone;
+      req.user.email = req.body.email;
+      req.user.address = req.body.address;
+
+      res.render("user_profile", {
+        loginStatus: 1,
+        profileName: req.user.name,
+        profilePic: req.user.photourl,
+        user: req.user,
+        updateStatusUser : "Updated Sucessfully",
+        updateStatusPassword : ""
+      })
+  }
+  else{
+    res.redirect("/login")
+  }
+})
+app.post("/editPassword", function(req, res){
+  
+  if(req.isAuthenticated()){
+    if(req.user.password === undefined || req.user.password === req.body.old-password  ){
+      req.user.password = req.body.new-password;
+      res.render("user_profile", {
+        loginStatus: 1,
+        profileName: req.user.name,
+        profilePic: req.user.photourl,
+        user: req.user,
+        updateStatusUser : "",
+        updateStatusPassword : "Updated Sucessfully"
+      })
+    }
+    else{
+      res.render("user_profile", {
+        loginStatus: 1,
+        profileName: req.user.name,
+        profilePic: req.user.photourl,
+        user: req.user,
+        updateStatusUser : "",
+        updateStatusPassword : "Old Password invalid"
+      })
+    }
+  }
+  else{
+    res.redirect("/login")
+  }
 })
 
 app.post("/payment/:resName", function(req, res){
@@ -299,7 +345,7 @@ app.post("/payment/:resName", function(req, res){
 
 });
 
-app.get("/signout", function(req, res){
+app.get("/logout", function(req, res){
   req.logout();
   res.redirect("/");
 })
