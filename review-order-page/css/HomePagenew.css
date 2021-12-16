@@ -2,10 +2,10 @@
 title
 ---------- */
 
-.title-container{
+.city-container{
   padding-top:1%;
 }
-.catch-title {
+.city-title {
   font-size: 4.2rem;
   text-align: center;
   padding-top: 3.5rem;
@@ -46,35 +46,4 @@ Submit button
 }
 .submit-button:hover {
  opacity: 0.9;
-}
-
-
-@media only screen and (max-width: 992px) {
-  .select-city{
-    width:50%;
-    margin: auto ;
-    padding-bottom: 2%;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .select-city{
-    width:60%;
-    margin: auto ;
-    padding-bottom: 2%;
-  }
-  .icon {
-    padding-left: 2%;
-  }
-}
-
-@media only screen and (max-width: 576px) {
-  .select-city{
-    width:70%;
-    margin: auto ;
-    padding-bottom: 2%;
-  }
-  .icon {
-    padding-left: 2%;
-  }
 }
