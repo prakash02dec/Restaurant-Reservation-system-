@@ -27,6 +27,12 @@ app.use(passport.initialize());
 app.use(passport.session())
 mongoose.connect("mongodb://127.0.0.1:27017/resdineDB");
 
+const suggestionSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  message: String
+})
+
 const orderSchema = new mongoose.Schema({
   guests: Number,
   resTime: String,
@@ -66,6 +72,7 @@ const cityRestuarantSchema = new mongoose.Schema({
 userSchema.plugin(passportLocalMongoose);
 userSchema.plugin(findOrCreate);
 
+const Suggestion = mongoose.model("Suggestion", suggestionSchema);
 const User = mongoose.model("User", userSchema);
 const cityRestuarant = mongoose.model("cityRestuarant", cityRestuarantSchema);
 const Order = mongoose.model("Order", orderSchema);
@@ -116,6 +123,21 @@ function navRender(page, req, res){
 
 app.get("/", function (req, res) {
   navRender("home", req, res);
+});
+
+app.get("/contactus", function (req, res) {
+  navRender("contact_us", req, res);
+});
+
+app.post("/contactus", function (req, res) {
+  sug = new Suggestion({
+    name: req.body.name,
+    email: req.body.email,
+    message: req.body.message
+  });
+
+  sug.save();
+  res.redirect("/");
 });
 
 app.get("/additional", function(req, res){
@@ -377,7 +399,7 @@ app.post("/revieworder/:resId", function(req, res){
 });
 
 app.post("/payment", function(req, res){
-  
+
   res.redirect("/");
 })
 
