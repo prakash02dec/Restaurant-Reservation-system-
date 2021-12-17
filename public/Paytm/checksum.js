@@ -11,8 +11,8 @@ function paramsToString(params, mandatoryflag) {
   var tempKeys = Object.keys(params);
   tempKeys.sort();
   tempKeys.forEach(function (key) {
-  var n = params[key].includes("REFUND");
-   var m = params[key].includes("|");
+  var n = params[key].includes("REFUND"); 
+   var m = params[key].includes("|");  
         if(n == true )
         {
           params[key] = "";
@@ -20,7 +20,7 @@ function paramsToString(params, mandatoryflag) {
           if(m == true)
         {
           params[key] = "";
-        }
+        }  
     if (key !== 'CHECKSUMHASH' ) {
       if (params[key] === 'null') params[key] = '';
       if (!mandatoryflag || mandatoryParams.indexOf(key) !== -1) {
@@ -90,7 +90,7 @@ function verifychecksumbystring(params, key,checksumhash) {
       util.log("checksum is wrong");
       return false;
     }
-  }
+  } 
 
 function genchecksumforrefund(params, key, cb) {
   var data = paramsToStringrefund(params);
@@ -108,11 +108,11 @@ function paramsToStringrefund(params, mandatoryflag) {
   var tempKeys = Object.keys(params);
   tempKeys.sort();
   tempKeys.forEach(function (key) {
-   var m = params[key].includes("|");
+   var m = params[key].includes("|");  
           if(m == true)
         {
           params[key] = "";
-        }
+        }  
     if (key !== 'CHECKSUMHASH' ) {
       if (params[key] === 'null') params[key] = '';
       if (!mandatoryflag || mandatoryParams.indexOf(key) !== -1) {

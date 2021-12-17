@@ -9,8 +9,16 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
 const _ = require("lodash")
+const cors = require('cors')
 const app = express();
-
+app.use(cors({ origin: '*' }))
+const checksum_lib = require('./public/Paytm/checksum');
+const PaytmConfig = {
+  mid: process.env.MERCHANT_ID,
+  key: process.env.MERCHANT_KEY,
+  website: process.env.WEBSITE
+}
+app.use(bodyParser.json())
 app.use(express.static(__dirname + '/public'));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({
@@ -359,9 +367,9 @@ app.post("/editPassword", function (req, res) {
   }
 })
 
-let newOrder = new Order();
-app.post("/revieworder/:resId", function (req, res) {
 
+app.post("/revieworder/:resId", function (req, res) {
+  let newOrder = new Order();
   if (req.isAuthenticated()) {
     let guests = req.body.guests;
     let resDate = req.body.bookingDate;
@@ -391,6 +399,7 @@ app.post("/revieworder/:resId", function (req, res) {
         resTime: resTime,
         price: price
       });
+      newOrder.save();
     });
 
   }
@@ -399,9 +408,57 @@ app.post("/revieworder/:resId", function (req, res) {
   }
 });
 
-app.post("/payment", function (req, res) {
-  newOrder.save(); //Order saved to database
-  res.redirect("/");
+app.post("/paynow", function (req, res) {
+  var params = {};
+  params["MID"] = PaytmConfig.mid;
+  params["WEBSITE"] = PaytmConfig.website;
+  params["CHANNEL_ID"] = "WEB";
+  params["INDUSTRY_TYPE_ID"] = "Retail";
+  // make sure that orderid be unique all time
+  params["ORDER_ID"] = "TEST_" + new Date().getTime();
+  params["CUST_ID"] = "Customer001";
+  // Enter amount here eg. 100.00 etc according to your need
+  params["TXN_AMOUNT"] = req.body.price;
+  params["CALLBACK_URL"] = "http://localhost:3000/callback";
+
+  // here you have to write customer"s email
+  params["EMAIL"] = req.user.email;
+  // here you have to write customer's phone number
+  params['MOBILE_NO'] = req.user.phone;
+
+  checksum_lib.genchecksum(params, PaytmConfig.key, function (err, checksum) {
+
+    var txn_url = "https://securegw-stage.paytm.in/order/process"; // for staging
+    var form_fields = "";
+    for (var x in params) {
+      form_fields += "<input type='hidden' name='" + x + "' value='" + params[x] + "' >";
+    }
+    form_fields += "<input type='hidden' name='CHECKSUMHASH' value='" + checksum + "' >";
+
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    var x = '<html><head><title>Merchant Checkout Page</title></head><body><center><h1>Please do not refresh this page...</h1></center><form method="post" action="' + txn_url + '" name="f1">' + form_fields + '</form><script type="text/javascript">document.f1.submit();</script></body></html>'
+    res.write(x);
+    res.end();
+  });
+
+})
+
+app.post('/callback', (req, res) => {
+  let data = req.body
+  if (data.STATUS == "TXN_SUCCESS") {
+    return res.send({
+      status: 0,
+      data: data,
+      success: true
+    });
+  }
+  else {
+    return res.send({
+      status: 1,
+      data: data,
+      success: false
+    });
+  }
 })
 
 app.get("/logout", function (req, res) {

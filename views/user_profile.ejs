@@ -192,9 +192,8 @@
 
                 <div class="tab-pane fade" id="booking" role="tabpanel" aria-labelledby="booking-tab">
                   <main class="grid-booking">
-                    <% let flg = 0; %>
+                    <%if( orders.len !== 0 ){ %>
                       <% orders.forEach(function (order) { %>
-                        <% if( order.userID === user._id.toString() ){ flg = 1%>
                         <article>
                           <div class="previous-restaurants-wrap">
                             <div class="row">
@@ -225,8 +224,8 @@
                             </div>
                           </div>
                         </article>
-                        <% }}) %>
-                          <%  if(flg === 0){ %>
+                        <% }) %>
+                          <% } else{ %>
                             <h4>No Bookings Yet ...</h4>
                             <%}%>
                   </main>
