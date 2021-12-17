@@ -13,6 +13,7 @@ const cors = require('cors')
 const app = express();
 app.use(cors({ origin: '*' }))
 const checksum_lib = require('./public/Paytm/checksum');
+
 const PaytmConfig = {
   mid: process.env.MERCHANT_ID,
   key: process.env.MERCHANT_KEY,
@@ -291,7 +292,7 @@ app.get("/restaurantpage/:name", function (req, res) {
 
 app.get("/profile", function (req, res) {
   if (req.isAuthenticated()) {
-    Order.find({ userId: req.user._id.toString() }, function (err, order) {
+    Order.find({ userID: req.user._id }, function (err, order) {
       res.render("user_profile", {
         loginStatus: 1,
         profileName: req.user.name,
@@ -314,7 +315,7 @@ app.post("/editUser", function (req, res) {
     req.user.phone = req.body.phone;
     req.user.email = req.body.email;
     req.user.address = req.body.address;
-    Order.find({ userId: req.user._id.toString() }, function (err, order) {
+    Order.find({ userID: req.user._id }, function (err, order) {
       res.render("user_profile", {
         loginStatus: 1,
         profileName: req.user.name,
@@ -336,7 +337,7 @@ app.post("/editPassword", function (req, res) {
   if (req.isAuthenticated()) {
     if (req.user.password === undefined || req.user.password === req.body.old - password) {
       req.user.password = req.body.new - password;
-      Order.find({ userId: req.user._id.toString() }, function (err, order) {
+      Order.find({ userID: req.user._id }, function (err, order) {
         res.render("user_profile", {
           loginStatus: 1,
           profileName: req.user.name,
@@ -349,7 +350,7 @@ app.post("/editPassword", function (req, res) {
       })
     }
     else {
-      Order.find({ userId: req.user._id.toString() }, function (err, order) {
+      Order.find({ userID: req.user._id }, function (err, order) {
         res.render("user_profile", {
           loginStatus: 1,
           profileName: req.user.name,
