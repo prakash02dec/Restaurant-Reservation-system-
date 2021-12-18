@@ -3,10 +3,9 @@ Header css
 ---------- */
 
 .booking-summary{
-  padding-top: 2%;
+  padding-top: 3%;
   /* background-color: #EDEDED; */
   background-color: #FEF9EF;
-  padding-bottom: 22%;
 }
 
 
@@ -17,8 +16,9 @@ Details and offer container CSS
   background-color: #fff;
   border-radius: 10px;
   width:50%;
-  margin-bottom: 15%;
+  margin-bottom: 8%;
 }
+
 .section-header{
   /* background-color: #FEF9EF; */
   background-color: #f55253 !important;
@@ -45,10 +45,12 @@ Selected Date,time
 .details{
   font-weight: bold;
 }
+
 .deal-header{
   padding:0 10px;
   padding-bottom: 10px;
 }
+
 .deal-details{
   padding:0 10px;
   text-align: center;
@@ -56,19 +58,22 @@ Selected Date,time
   margin:auto 35%;
   font-weight: 600;
 }
+
 .deal-offer{
   margin-top: 1%;
   padding:2% 0;
   border-radius: 5px;
   padding: 7% 0;
 }
+
 .rupee-symbol{
   font-family: sans-serif;
 }
 
 .confirm-row{
-  height: 250px;
-  width: 1500px;
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
 }
 /*
 -----------
@@ -114,6 +119,11 @@ Book button
 .check-details{
   width: 70%;
   margin-bottom: 18%;
+}
+
+.deal-header{
+  font-size: 80%;
+}
 }
 @media only screen and (max-width: 650px) {
 .check-details{

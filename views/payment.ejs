@@ -1,0 +1,91 @@
+<%- include('partials/header') %>
+ <% if (success) { %>
+<section class="payment_page_section">
+  <div class="container-fluid payment_container_wrap">
+    <div class="container payment_container payment_container_s">
+      <div class="payment_info_wrap">
+        <div class="row">
+          <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 col_1">
+            <i class="fas fa-check fa-2x success"></i>
+            <h5 class="payment_msg payment_msg_s">Payment successful.....</h5>
+          </div>
+          <h2 class="payment_details_heading">Payment Details</h2>
+          <div class="row payment_details">
+            <div class="col col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+              <div class="payment_info">Payment Status</div>
+              <div class="payment_info">Order ID</div>
+              <div class="payment_info">Transaction ID</div>
+              <div class="payment_info">Amount Paid</div>
+              <div class="payment_info">Bank Name</div>
+              <div class="payment_info">Date and Time</div>
+            </div>
+            <div class="col col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+              <div class="payment_info_value_s">: Success</div>
+              <div class="payment_info_value_s">: <%= ORDER_ID %></div>
+              <div class="payment_info_value_s">: <%= TXNID %></div>
+              <div class="payment_info_value_s">
+                : <%= AMOUNT + " " + CURRENCY %>
+              </div>
+              <div class="payment_info_value_s">: <%= BANK_NAME %></div>
+              <div class="payment_info_value_s">: <%= DATE_AND_TIME %></div>
+            </div>
+            <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+              <div class="post-payment-btn">
+                <a href="/" class="btn btn-info after-payment-btn"
+                  >Proceed to Home Page <i class="fas fa-arrow-right"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<% } else { %>
+
+<section class="payment_page_section">
+  <div class="container-fluid payment_container_wrap">
+    <div class="container payment_container payment_container_f">
+      <div class="payment_info_wrap">
+        <div class="row">
+          <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 col_1">
+            <i class="fas fa-times fa-2x failure"></i>
+            <h5 class="payment_msg payment_msg_f">Payment failed .....</h5>
+          </div>
+          <h2 class="payment_details_heading">Payment Details</h2>
+          <div class="row payment_details">
+            <div class="col col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+              <div class="payment_info">Payment Status</div>
+              <div class="payment_info">Order ID</div>
+              <div class="payment_info">Transaction ID</div>
+              <div class="payment_info">Amount</div>
+              <div class="payment_info">Bank Name</div>
+              <div class="payment_info">Date and Time</div>
+            </div>
+            <div class="col col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+              <div class="payment_info_value_f">: Failure</div>
+              <div class="payment_info_value_f">: <%= ORDER_ID %></div>
+              <div class="payment_info_value_f">: <%= TXNID %></div>
+              <div class="payment_info_value_f">
+                : <%= AMOUNT +" " + CURRENCY %>
+              </div>
+              <div class="payment_info_value_f">: <%= BANK_NAME %></div>
+              <div class="payment_info_value_f">: <%= DATE_AND_TIME %></div>
+            </div>
+            <div class="col col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+              <div class="post-payment-btn">
+                <a href="/restaurantpage/<%= restaurantName %>" class="btn btn-info after-payment-btn"
+                  >Try Again <i class="fas fa-undo"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<% } %> <%-include('partials/footer') %>
