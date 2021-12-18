@@ -58,6 +58,7 @@
           </div>
           <form action="/paynow" method="post">
             <input type="hidden" name="price" value="<%= price %>">
+            <input type="hidden" name="orderID" value="<%= orderid %>">
             <div class="row">
               <button type="submit" class="btn button-submit btn-md col-sm-11 col-11">Proceed to Payment</button>
             </div>

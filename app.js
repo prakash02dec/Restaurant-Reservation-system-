@@ -398,14 +398,15 @@ app.post("/revieworder/:resId", function (req, res) {
         guests: guests,
         resDate: resDate,
         resTime: resTime,
-        price: price
+        price: price,
+        orderid: newOrder._id
       });
       newOrder.save();
     });
 
   }
   else {
-    res.redirect("/signup");
+    res.redirect("/login");
   }
 });
 
@@ -416,12 +417,11 @@ app.post("/paynow", function (req, res) {
   params["CHANNEL_ID"] = "WEB";
   params["INDUSTRY_TYPE_ID"] = "Retail";
   // make sure that orderid be unique all time
-  params["ORDER_ID"] = "TEST_" + new Date().getTime();
+  params["ORDER_ID"] = req.body.orderID;
   params["CUST_ID"] = "Customer001";
   // Enter amount here eg. 100.00 etc according to your need
   params["TXN_AMOUNT"] = req.body.price;
   params["CALLBACK_URL"] = "http://localhost:3000/callback";
-
   // here you have to write customer"s email
   params["EMAIL"] = req.user.email;
   // here you have to write customer's phone number
@@ -445,21 +445,54 @@ app.post("/paynow", function (req, res) {
 })
 
 app.post('/callback', (req, res) => {
-  let data = req.body
-  if (data.STATUS == "TXN_SUCCESS") {
-    return res.send({
-      status: 0,
-      data: data,
-      success: true
-    });
-  }
-  else {
-    return res.send({
-      status: 1,
-      data: data,
-      success: false
-    });
-  }
+  let data = req.body ;
+  let restaurantName ;
+  Order.findById(data.ORDERID, function (err, foundOrder) {
+    if (err)
+      console.log(err)
+    else {
+      restaurantName = foundOrder.resName
+      
+      if (req.isAuthenticated())
+        if (data.STATUS == "TXN_SUCCESS") {
+          res.render("payment", {
+            loginStatus: 1,
+            profilePic: req.user.photourl,
+            profileName: req.user.name,
+            ORDER_ID: data.ORDERID,
+            AMOUNT: data.TXNAMOUNT,
+            CURRENCY: data.CURRENCY,
+            BANK_NAME: data.BANKNAME,
+            DATE_AND_TIME: data.TXNDATE,
+            restaurantName: restaurantName,
+            TXNID : data.TXNID,
+            success: true
+          });
+        }
+        else {
+          res.render("payment", {
+            loginStatus: 1,
+            profilePic: req.user.photourl,
+            profileName: req.user.name,
+            ORDER_ID: data.ORDERID,
+            AMOUNT: data.TXNAMOUNT,
+            CURRENCY: data.CURRENCY,
+            BANK_NAME: data.BANKNAME,
+            DATE_AND_TIME: data.TXNDATE,
+            restaurantName: restaurantName,
+            TXNID : data.TXNID,
+            success: false
+          });
+          Order.deleteOne({ _id: data.ORDERID }, function (err) {
+            if (err)
+              console.log(err)
+          })
+        }
+    }
+
+  })
+
+
 })
 
 app.get("/logout", function (req, res) {
