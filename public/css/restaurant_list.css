@@ -60,7 +60,7 @@ background-image:url(photo13.jpg);
     
 }
 .grid > article{
-    background: #F7F7F7;
+    /* background: #F7F7F7; */
     border:none;
     transition: transform .3s;
     position:relative;

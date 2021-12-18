@@ -65,7 +65,6 @@ input[type=file]::file-selector-button {
     grid-gap: 3rem;
 }
 .grid-booking > article{
-    background: #F7F7F7;
     border:none;
     transition: transform .3s;
     position:relative;
@@ -137,7 +136,7 @@ input[type=file]::file-selector-button {
 
 .profile_options_wrapper {
   padding: 100px 0;
-  background-color: var(--bg2);
+  /* background-color: var(--bg2); */
 }
 
 .profile_options_heading {
