@@ -13,6 +13,8 @@ const cors = require('cors')
 const app = express();
 const multer  = require("multer")
 const path = require("path")
+const PORT = process.env.PORT || '3000';
+const URL = process.env.URL || "http://localhost:" + PORT;
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -70,7 +72,8 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session())
-mongoose.connect("mongodb://127.0.0.1:27017/resdineDB");
+mongooseLink = "mongodb+srv://" + process.env.ATLAS_USER_ID + ":" + process.env.ATLAS_USER_PASSWORD + "@cluster0.0vjgs.mongodb.net/ResDine";
+mongoose.connect(mongooseLink);
 
 const suggestionSchema = new mongoose.Schema({
   name: String,
@@ -137,7 +140,7 @@ passport.deserializeUser(function (id, done) {
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: "http://localhost:3000/auth/google/resdine",
+  callbackURL: URL + "/auth/google/resdine",
 },
   function (accessToken, refreshToken, profile, cb) {
 
@@ -487,7 +490,7 @@ app.post("/paynow", function (req, res) {
   params["CUST_ID"] = "Customer001";
   // Enter amount here eg. 100.00 etc according to your need
   params["TXN_AMOUNT"] = req.body.price;
-  params["CALLBACK_URL"] = "http://localhost:3000/callback";
+  params["CALLBACK_URL"] = URL + "/callback";
   // here you have to write customer"s email
   params["EMAIL"] = req.user.email;
   // here you have to write customer's phone number
@@ -511,6 +514,7 @@ app.post("/paynow", function (req, res) {
 })
 
 app.post('/callback', (req, res) => {
+  console.log("RAN");
   let data = req.body ;
   let restaurantName ;
   Order.findById(data.ORDERID, function (err, foundOrder) {
@@ -566,6 +570,6 @@ app.get("/logout", function (req, res) {
   res.redirect("/");
 });
 
-app.listen(3000, function () {
-  console.log("Server running on Port 3000");
+app.listen(PORT, function () {
+  console.log("Server running on port " + PORT);
 });
