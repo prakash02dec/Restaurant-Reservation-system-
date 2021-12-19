@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
     const filetypes = /jpeg|jpg|png/;
     let extname = path.extname(
       file.originalname).toLowerCase();
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9 ) 
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9 )
     cb(null, file.fieldname + '-' + uniqueSuffix + extname)
   }
 })
@@ -31,18 +31,18 @@ const maxSize = 1 * 1000 * 1000;
 const upload = multer({ storage: storage ,
   limits: { fileSize: maxSize },
   fileFilter: function (req, file, cb){
-  
+
       // Set the filetypes, it is optional
       const filetypes = /jpeg|jpg|png/;
       let mimetype = filetypes.test(file.mimetype);
 
       let extname = filetypes.test(path.extname(
                   file.originalname).toLowerCase());
-      
+
       if (mimetype && extname) {
           return cb(null, true);
       }
-    
+
       cb("Error: File upload only supports the "
               + "following filetypes - " + filetypes);
     } }).single("avatar")
@@ -140,8 +140,12 @@ passport.use(new GoogleStrategy({
   callbackURL: "http://localhost:3000/auth/google/resdine",
 },
   function (accessToken, refreshToken, profile, cb) {
-    // console.log(profile)
-    User.findOrCreate({ googleId: profile.id, email: profile.emails[0].value, username: profile.displayName, name: profile.displayName, photourl: profile.photos[0].value }, function (err, user) {
+
+    User.findOrCreate({ googleId: profile.id, email: profile.emails[0].value, username: profile.displayName, name: profile.displayName}, function (err, user) {
+      if(!err && user.photourl === undefined){
+        user.photourl = profile.photos[0].value;
+        user.save();
+      }
       return cb(err, user);
     });
   }
@@ -353,10 +357,14 @@ app.post('/upload', function (req, res) {
       // A Multer error occurred when uploading.
     } else if (err) {
       // An unknown error occurred when uploading.
+      console.log(err);
     }
     if(req.isAuthenticated()){
       req.user.photourl = "uploads/" + req.file.filename;
       req.user.save()
+      // User.UpdateOne({_id: req.user._id}, {
+      //
+      // })
       res.redirect("/profile")
     }else{
       res.redirect("/login")
@@ -382,7 +390,7 @@ app.post("/editUser", function (req, res) {
         updateStatusPassword: ""
       })
     })
-    
+
   }
   else {
     res.redirect("/login")
@@ -510,7 +518,7 @@ app.post('/callback', (req, res) => {
       console.log(err)
     else {
       restaurantName = foundOrder.resName
-      
+
       if (req.isAuthenticated())
         if (data.STATUS == "TXN_SUCCESS") {
           res.render("payment", {
