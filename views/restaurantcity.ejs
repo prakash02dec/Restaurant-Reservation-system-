@@ -11,7 +11,7 @@
       <main class="grid">
         <% restaurants.forEach(function(restaurant) { %>
           <article>
-            <img alt="city-image" src="/images/restaurant-default.jpg" class="left">
+            <img alt="city-image" src=<%= restaurant.carouselImages[0] %> class="left">
             <div class="text">
               <h2 class="restaurant-name text-start"><%= restaurant.name %></h2>
               <div>
