@@ -72,9 +72,8 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session())
-// mongooseLink = "mongodb+srv://" + process.env.ATLAS_USER_ID + ":" + process.env.ATLAS_USER_PASSWORD + "@cluster0.0vjgs.mongodb.net/ResDine";
-// mongoose.connect(mongooseLink);
-mongoose.connect("mongodb://127.0.0.1:27017/resdineDB");
+mongooseLink = "mongodb+srv://" + process.env.ATLAS_USER_ID + ":" + process.env.ATLAS_USER_PASSWORD + "@cluster0.0vjgs.mongodb.net/ResDine";
+mongoose.connect(mongooseLink);
 
 const suggestionSchema = new mongoose.Schema({
   name: String,
