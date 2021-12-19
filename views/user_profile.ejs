@@ -12,11 +12,16 @@
             <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-12">
               <div class="profile_options_heading">
                 <div class="text-center">
+                  <div class="avatar-container">
                   <img src="<%= profilePic %>" class="avatar img-circle img-thumbnail" alt="avatar">
-                  <h6 id="photo-upload">Upload a Different Photo</h6>
-                  <div class="profile-image">
-                    <input for="files" type="file" class="profile-image-file btn">
-                  </div>
+                </div>
+                    <h6 id="photo-upload">Upload a Different Photo</h6>
+                    <div class="profile-image">
+                      <form action="/upload" method="post" enctype="multipart/form-data">
+                      <input for="files" name="avatar" type="file" class="profile-image-file btn">
+                      <button type="submit" class="btn profile-btn" >Upload</button>
+                    </form>
+                    </div>
                   <div class="profile_options_content_txt">
                     <a href="/logout" class="btn profile-btn ">Log Out</a>
                   </div>

@@ -11,6 +11,42 @@ const findOrCreate = require('mongoose-findorcreate');
 const _ = require("lodash")
 const cors = require('cors')
 const app = express();
+const multer  = require("multer")
+const path = require("path")
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./public/uploads")
+  },
+  filename: function (req, file, cb) {
+    const filetypes = /jpeg|jpg|png/;
+    let extname = path.extname(
+      file.originalname).toLowerCase();
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9 ) 
+    cb(null, file.fieldname + '-' + uniqueSuffix + extname)
+  }
+})
+const maxSize = 1 * 1000 * 1000;
+
+const upload = multer({ storage: storage ,
+  limits: { fileSize: maxSize },
+  fileFilter: function (req, file, cb){
+  
+      // Set the filetypes, it is optional
+      const filetypes = /jpeg|jpg|png/;
+      let mimetype = filetypes.test(file.mimetype);
+
+      let extname = filetypes.test(path.extname(
+                  file.originalname).toLowerCase());
+      
+      if (mimetype && extname) {
+          return cb(null, true);
+      }
+    
+      cb("Error: File upload only supports the "
+              + "following filetypes - " + filetypes);
+    } }).single("avatar")
+
 app.use(cors({ origin: '*' }))
 const checksum_lib = require('./public/Paytm/checksum');
 
@@ -27,7 +63,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(session({
-  secret: "our little secret",
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false
 }));
@@ -189,6 +225,8 @@ app.post("/signup", function (req, res) {
     address: req.body.address,
     phone: req.body.number,
     gender: req.body.gender,
+    email : req.body.username,
+    password : req.body.password,
     photourl: "images/profile-default.jpg"
   }, req.body.password, function (err, user) {
     if (err) {
@@ -309,12 +347,30 @@ app.get("/profile", function (req, res) {
   }
 })
 
+app.post('/upload', function (req, res) {
+  upload(req, res, function (err) {
+    if (err instanceof multer.MulterError) {
+      // A Multer error occurred when uploading.
+    } else if (err) {
+      // An unknown error occurred when uploading.
+    }
+    if(req.isAuthenticated()){
+      req.user.photourl = "uploads/" + req.file.filename;
+      req.user.save()
+      res.redirect("/profile")
+    }else{
+      res.redirect("/login")
+    }
+  })
+})
+
 app.post("/editUser", function (req, res) {
   if (req.isAuthenticated()) {
     req.user.name = req.body.name;
     req.user.phone = req.body.phone;
     req.user.email = req.body.email;
     req.user.address = req.body.address;
+    req.user.save()
     Order.find({ userID: req.user._id }, function (err, order) {
       res.render("user_profile", {
         loginStatus: 1,
@@ -326,6 +382,7 @@ app.post("/editUser", function (req, res) {
         updateStatusPassword: ""
       })
     })
+    
   }
   else {
     res.redirect("/login")
@@ -335,8 +392,9 @@ app.post("/editUser", function (req, res) {
 app.post("/editPassword", function (req, res) {
 
   if (req.isAuthenticated()) {
-    if (req.user.password === undefined || req.user.password === req.body.old - password) {
-      req.user.password = req.body.new - password;
+    if (req.user.password === undefined || req.user.password === req.body.old-password) {
+      req.user.password = req.body.new-password;
+      req.user.save()
       Order.find({ userID: req.user._id }, function (err, order) {
         res.render("user_profile", {
           loginStatus: 1,

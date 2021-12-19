@@ -81,9 +81,14 @@ input[type=file]::file-selector-button {
 }
 
 .avatar {
-  max-width: 40%;
-  margin: 0 auto;
+  height: 100%;
+  width: 100%;
   border-radius: 50%;
+}
+.avatar-container{
+  width: 11rem;
+  height: 11rem;
+  margin: 0 auto;
 }
 
 .profile-image {
