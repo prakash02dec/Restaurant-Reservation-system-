@@ -1,8 +1,12 @@
+![alt text](https://github.com/prakash02dec/Restaurant-Reservation-system-/blob/main/Screenshot%20(171).png)
 # ResDine
-***
-**OOPs Course Mini Project**
 ---
-### Team Members
+### [Report-Link](https://github.com/prakash02dec/Restaurant-Reservation-system-/blob/main/REPORT.pdf) 
+### Deployment-Link
+#### AWS  [http://ec2-15-206-100-143.ap-south-1.compute.amazonaws.com/](http://ec2-15-206-100-143.ap-south-1.compute.amazonaws.com/)         
+#### Heroku [https://resdine.herokuapp.com/](https://resdine.herokuapp.com/)
+---
+## Team Members
 |Name|Email|Institute ID|    |    
 |----|-----|-------|-----|    
 | [Om Morendha](https://github.com/omkmorendha) | omkmorendha@gmail.com |20bcs095| Backend |
