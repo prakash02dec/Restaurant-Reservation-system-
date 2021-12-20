@@ -557,10 +557,7 @@ app.post('/callback', (req, res) => {
           })
         }
     }
-
   })
-
-
 })
 
 app.get("/logout", function (req, res) {
