@@ -1,4 +1,4 @@
-require('dotenv').config()
+const dotenv = require('dotenv').config({path:'./.env'})
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
@@ -363,9 +363,9 @@ app.post('/upload', function (req, res) {
       console.log(err);
     }
     if(req.isAuthenticated()){
-      if (req.file){
-        req.user.photourl = "uploads/" + req.file.filename;
-        req.user.save()
+      if(req.file !== undefined){
+      req.user.photourl = "/uploads/" + req.file.filename;
+      req.user.save()
       }
       res.redirect("/profile")
     }else{
