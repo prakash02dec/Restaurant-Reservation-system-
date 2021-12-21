@@ -1,0 +1,335 @@
+h1 {
+  color: #f55253;
+}
+
+#user-greeting {
+  color: #f55253;
+  padding-bottom: 5%;
+}
+
+.user-profile-form-detail {
+    color: #f55253;
+    padding: 10px 0;
+}
+
+#photo-upload {
+  color: #f55253;
+  padding: 10px 0;
+}
+
+.edit-details-btn{
+  padding-top: 5%;
+}
+
+.restaurant-booking-name{
+  color: #f55253;
+  padding: 10px 0;
+}
+
+.previous-restaurant-image{
+  max-height: 80%;
+  max-width: 80%;
+  margin: 7% auto 13%;
+}
+.restaurant-booking-details {
+  color: black;
+  padding: 10px 0;
+  /* font-size: 10px; */
+}
+
+
+.grid-booking >article .text {
+
+    text-align: left;
+    font-size: 18px;
+    list-style: inside;
+    padding: 1rem 2rem 2rem;
+
+    border-radius: 0.5rem;
+}
+.grid-booking{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 3rem;
+}
+.grid-booking > article{
+    background: #F7F7F7;
+    border:none;
+    transition: transform .3s;
+    position:relative;
+    margin: auto;
+
+}
+
+.grid-booking > article img{
+    width: 20rem;
+    /* height: 1rem; */
+    margin: auto;
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.5) ;
+}
+
+.avatar {
+  max-width: 40%;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+
+.profile-image {
+  margin:auto;
+  text-align: center;
+}
+
+.img-url {
+  margin-left: 2%;
+}
+
+.profile-image-file {
+  padding-left: 35px;
+  max-width: 100%;
+}
+
+.nav-link {
+  color: #f55253;
+  font-size: 20px;
+}
+
+.main-content {
+  padding-right: 0;
+}
+
+.cont {
+  padding: 0;
+  margin: 0;
+}
+
+.profileText {
+  margin-left: 100px;
+}
+
+.test-col-1 {
+  background-color: red;
+  height: 20px;
+}
+
+.test-col-2 {
+  background-color: blue;
+  height: 20px;
+}
+
+.profile_row {
+  margin: 0;
+  align-self: auto;
+  padding: 0 1%;
+}
+
+.center-cont {
+  align-content: center;
+}
+
+.profile_options_wrapper {
+  padding: 100px 0;
+  background-color: var(--bg2);
+}
+
+.profile_options_heading {
+  text-align: center;
+}
+
+.profile_options_heading_title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: 0.01em;
+  color: #f54748;
+  margin: 0 0 8px 0;
+}
+
+.profile_options_heading_title2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 54px;
+  text-transform: capitalize;
+  color: var(--color2);
+  max-width: 50%;
+  margin: 0 auto;
+}
+
+.profile_options_content_wrap {
+  margin: 60px 0 20px 0;
+}
+
+.profile_options_content_inner {
+  position: relative;
+}
+
+.profile_options_content_bg {
+  position: absolute;
+  width: 90%;
+  height: 100%;
+  background: #fe6a6a;
+  border-radius: 12px;
+  left: 28px;
+  z-index: 0;
+  -webkit-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+  opacity: 0;
+  -webkit-transition: 0.2s all ease;
+  -o-transition: 0.2s all ease;
+  transition: 0.2s all ease;
+}
+
+.profile_options_content_inner:hover .profile_options_content_bg {
+  opacity: 1;
+  left: 38px;
+  top: -3px;
+  -webkit-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+
+.profile_options_content {
+  margin: 20px;
+  background-color: var(--bg);
+  border-radius: 12px;
+  padding: 50px 28px;
+  position: relative;
+  z-index: 2;
+}
+
+.profile_options_content_img {
+  width: auto;
+  height: 60px;
+  margin: 0 auto;
+  -webkit-filter: drop-shadow(0px 25px 30px rgba(248, 67, 68, 0.1));
+  filter: drop-shadow(0px 25px 30px rgba(248, 67, 68, 0.1));
+}
+
+.profile_options_content_ic {
+  width: auto;
+  height: 60px;
+  text-align: center;
+  color: #fe6a6a;
+}
+
+.profile_options_content_txt {
+  text-align: center;
+  margin: 30px 0 10px 0;
+}
+
+.profile_options_content_title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 33px;
+  letter-spacing: -0.01em;
+  color: var(--color2);
+  margin: 0 0 15px 0;
+}
+
+.profile_options_content_para {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 25px;
+  color: var(--color3);
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.profile-btn {
+  border-color: #f55253;
+  background-color: #f55253;
+  color: white;
+}
+
+.profile-btn:hover {
+  border-color: #f55253;
+  background-color: white;
+  color: #f55253;
+}
+
+@media only screen and (max-width: 992px) {
+  .grid-booking > article img{
+      width: 100rem;
+      /* height: 1rem; */
+      padding: 4rem 1rem 2rem;
+      box-shadow: rgba(0, 0, 0, 0.5) ;
+  }
+
+  .previous-restaurant-image{
+    max-height: 100%;
+    max-width: 100%;
+    margin: 40% auto 7%;
+  }
+
+  .res-tab-heading {
+    font-size: 80%;
+  }
+
+  #booking-heading {
+    text-align: center;
+  }
+
+  #user-greeting {
+    text-align: center;
+  }
+  #cancellation-div {
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .grid-booking > article img{
+      width: 40rem;
+      /* height: 1rem; */
+      padding: 3.5rem 1rem 1rem;
+      box-shadow: rgba(0, 0, 0, 0.5) ;
+  }
+  .previous-restaurant-image{
+    max-height: 100%;
+    max-width: 100%;
+    margin: 40% auto 7%;
+  }
+
+  .res-tab-heading {
+    font-size: 85%;
+  }
+
+  #user-greeting {
+    text-align: center;
+  }
+  .edit-details-btn{
+    text-align: center;
+  }
+  .test-col-1 {
+    visibility: collapse;
+  }
+
+  #cancellation-div {
+    max-width: 70%;
+  }
+
+  #reserve-div {
+    max-width: 70%;
+    margin: 0 auto;
+  }
+
+  #payment-div {
+    max-width: 70%;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+
+  #user-greeting {
+    text-align: center;
+  }
+  .edit-details-btn{
+    text-align: center;
+  }
+}
