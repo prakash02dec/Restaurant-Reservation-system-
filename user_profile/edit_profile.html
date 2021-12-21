@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Edit Profile</title>
+
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ResDine</title>
+
+  <!--<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">-->
+
+  <script src="https://kit.fontawesome.com/1cec56f29b.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/signup.css">
+  <link rel="stylesheet" href="css/bootstrap-social.css">
+  <link rel="stylesheet" href="css/HomePagenew.css">
+  <link rel="stylesheet" href="css/edit_profile.css">
+</head>
+
+<body>
+  <!-- Navbar start -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light restaurant_navbar">
+    <div class="container ">
+      <a class="navbar-brand" href="/">ResDine</a>
+      <button class="navbar-toggler _toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav nav mb-2 mb-lg-0 restaurant_list">
+          <li class="nav-item restaurant_list_item">
+            <a class="nav-link restaurant_list_link" id="home-btn" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item restaurant_list_item">
+            <a class="nav-link restaurant_list_link" href="/#feature" tabindex="-1" aria-disabled="true">Features</a>
+          </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right ms-auto">
+          <li class="nav-item">
+            <a href="/login"><button class="btn btn-dark btn-lg">Sign in</button></a>
+          </li>
+          <li class="nav-item">
+            <a href="/signup"><button class="btn btn-lg btn-outline-dark">Sign up</button></a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar Ends -->
+
+  <div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+      <div class="col-md-3 border-right">
+        <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-1" src="https://www.wallpapertip.com/wmimgs/158-1586053_anonymous-wallpaper-hd-portrait.jpg">
+          <span class="font-weight-bold">Sudeepto Chatterjee</span><span class="text-black-50">sudeepto@example.com</span><span> </span></div>
+      </div>
+      <div class="col-md-5 border-right">
+        <div class="p-3 py-5">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="text-right">Profile Settings</h4>
+          </div>
+          <div class="row mt-1">
+            <div class="col-md-12"><label class="labels">Name</label><input type="text" class="form-control" placeholder="Enter Your Name" value=""></div>
+            <!--<div class="col-md-6"><label class="labels">Last Name</label><input type="text" class="form-control" value="" placeholder="last name"></div>-->
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" placeholder="Enter Your Address" value=""></div>
+            <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="Enter Email ID" value=""></div>
+            <!--<div class="col-md-12"><label class="labels">City</label><input type="text" class="form-control" placeholder="enter city" value=""></div>-->
+            <div class="col-md-12"><label class="labels">Contact No.</label><input type="text" class="form-control" placeholder="Your Contact No." value=""></div>
+          </div>
+          <!--<div class="row mt-3">
+            <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
+            <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
+          </div>-->
+          <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+        </div>
+      </div>
+      <!--<div class="col-md-4">
+        <div class="p-3 py-5">
+          <div class="d-flex justify-content-between align-items-center experience"><span>Edit About Me</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;About</span></div><br>
+          <div class="col-md-12"><label class="labels">Experience with ResDine</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
+          <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
+        </div>
+      </div>-->
+    </div>
+  </div>
+  </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+      <!-- Section: Social media -->
+      <section class="mb-4">
+        <!-- Facebook -->
+        <a class="btn btn-outline-light" href="https://www.facebook.com" role="button">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+
+        <!-- Twitter -->
+        <a class="btn btn-outline-light" href="https://www.twitter.com" role="button">
+          <i class="fab fa-twitter"></i>
+        </a>
+
+        <!-- Google -->
+        <a class="btn btn-outline-light" href="https://www.google.com" role="button">
+          <i class="fab fa-google"></i>
+        </a>
+
+        <!-- Instagram -->
+        <a class="btn btn-outline-light" href="https://www.instagram.com" role="button">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3">
+      © 2021 Copyright: ResDine
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer Section ends -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+  <script type="text/javascript" src="scripts/homeColor.js">
+
+  </script>
+</body>
+
+</html>
